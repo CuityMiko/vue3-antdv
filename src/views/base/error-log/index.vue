@@ -18,9 +18,7 @@
       </template>
       <template #action="{ record }">
         <TableAction
-          :actions="[
-            { label: t('sys.errorLog.tableActionDesc'), onClick: handleDetail.bind(null, record) },
-          ]"
+          :actions="[{ label: t('sys.errorLog.tableActionDesc'), onClick: handleDetail.bind(null, record) }]"
         />
       </template>
     </BasicTable>
@@ -41,7 +39,7 @@
 
   import { useErrorLogStore } from '/@/store/modules/errorLog';
 
-  // import { fireErrorApi } from '/@/api/demo/error';
+  // import { fireErrorApi } from '/@/services/demo/error';
 
   import { getColumns } from './data';
 

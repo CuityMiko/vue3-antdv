@@ -13,16 +13,11 @@
     name: 'LayoutFeatures',
     components: {
       BackTop,
-      LayoutLockPage: createAsyncComponent(() => import('/@/views/sys/lock/index.vue')),
+      LayoutLockPage: createAsyncComponent(() => import('/@/views/base/lock/index.vue')),
       SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue')),
     },
     setup() {
-      const {
-        getUseOpenBackTop,
-        getShowSettingButton,
-        getSettingButtonPosition,
-        getFullContent,
-      } = useRootSetting();
+      const { getUseOpenBackTop, getShowSettingButton, getSettingButtonPosition, getFullContent } = useRootSetting();
 
       const { prefixCls } = useDesign('setting-drawer-fearure');
       const { getShowHeader } = useHeaderSetting();

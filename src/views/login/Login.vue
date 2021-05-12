@@ -9,7 +9,7 @@
         <div class="hidden xl:flex xl:flex-col xl:w-6/12 min-h-full mr-4 pl-4">
           <AppLogo class="-enter-x" />
           <div class="my-auto">
-            <img :alt="title" src="../../../assets/svg/login-box-bg.svg" class="-enter-x" style="margin-left: -10vh" />
+            <img :alt="title" src="../../assets/svg/login-box-bg.svg" class="-enter-x" style="margin-left: -10vh" />
           </div>
         </div>
         <div class="h-full xl:h-auto flex py-5 xl:py-0 xl:my-0 w-full xl:w-6/12">
