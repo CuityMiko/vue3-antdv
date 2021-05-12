@@ -30,13 +30,8 @@
 
       const { getCalcContentWidth, getSplit } = useMenuSetting();
       const { getIsMobile } = useAppInject();
-      const {
-        getFixed,
-        getShowInsetHeaderRef,
-        getShowFullHeaderRef,
-        getHeaderTheme,
-        getShowHeader,
-      } = useHeaderSetting();
+      const { getFixed, getShowInsetHeaderRef, getShowFullHeaderRef, getHeaderTheme, getShowHeader } =
+        useHeaderSetting();
 
       const { getFullContent } = useFullContent();
 
@@ -50,49 +45,37 @@
         return unref(getFixed) || unref(getShowFullHeaderRef);
       });
 
-      const getWrapStyle = computed(
-        (): CSSProperties => {
-          const style: CSSProperties = {};
-          if (unref(getFixed)) {
-            style.width = unref(getIsMobile) ? '100%' : unref(getCalcContentWidth);
-          }
-          if (unref(getShowFullHeaderRef)) {
-            style.top = `${HEADER_HEIGHT}px`;
-          }
-          return style;
+      const getWrapStyle = computed((): CSSProperties => {
+        const style: CSSProperties = {};
+        if (unref(getFixed)) {
+          style.width = unref(getIsMobile) ? '100%' : unref(getCalcContentWidth);
         }
-      );
+        if (unref(getShowFullHeaderRef)) {
+          style.top = `${HEADER_HEIGHT}px`;
+        }
+        return style;
+      });
 
       const getIsFixed = computed(() => {
         return unref(getFixed) || unref(getShowFullHeaderRef);
       });
 
-      const getPlaceholderDomStyle = computed(
-        (): CSSProperties => {
-          let height = 0;
-          if (
-            (unref(getShowFullHeaderRef) || !unref(getSplit)) &&
-            unref(getShowHeader) &&
-            !unref(getFullContent)
-          ) {
-            height += HEADER_HEIGHT;
-          }
-          if (unref(getShowMultipleTab) && !unref(getFullContent)) {
-            height += TABS_HEIGHT;
-          }
-          headerHeightRef.value = height;
-          return {
-            height: `${height}px`,
-          };
+      const getPlaceholderDomStyle = computed((): CSSProperties => {
+        let height = 0;
+        if ((unref(getShowFullHeaderRef) || !unref(getSplit)) && unref(getShowHeader) && !unref(getFullContent)) {
+          height += HEADER_HEIGHT;
         }
-      );
+        if (unref(getShowMultipleTab) && !unref(getFullContent)) {
+          height += TABS_HEIGHT;
+        }
+        headerHeightRef.value = height;
+        return {
+          height: `${height}px`,
+        };
+      });
 
       const getClass = computed(() => {
-        return [
-          prefixCls,
-          `${prefixCls}--${unref(getHeaderTheme)}`,
-          { [`${prefixCls}--fixed`]: unref(getIsFixed) },
-        ];
+        return [prefixCls, `${prefixCls}--${unref(getHeaderTheme)}`, { [`${prefixCls}--fixed`]: unref(getIsFixed) }];
       });
 
       return {
