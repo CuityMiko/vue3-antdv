@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h3>分类质量分析</h3>
-  </div>
+  <div class="p-4">分类质量分析</div>
 </template>
 <script>
   export default {
