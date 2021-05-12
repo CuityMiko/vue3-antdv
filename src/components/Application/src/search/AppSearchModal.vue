@@ -4,12 +4,7 @@
       <div :class="getClass" @click.stop v-if="visible">
         <div :class="`${prefixCls}-content`" v-click-outside="handleClose">
           <div :class="`${prefixCls}-input__wrapper`">
-            <Input
-              :class="`${prefixCls}-input`"
-              :placeholder="t('common.searchText')"
-              allow-clear
-              @change="handleSearch"
-            >
+            <Input :class="`${prefixCls}-input`" placeholder="快捷搜索菜单" allow-clear @change="handleSearch">
               <template #prefix>
                 <!-- <Icon icon="ion:search"/> -->
                 <SearchOutlined />
@@ -91,14 +86,11 @@
       const [refs, setRefs] = useRefs();
       const { getIsMobile } = useAppInject();
 
-      const {
-        handleSearch,
-        searchResult,
-        keyword,
-        activeIndex,
-        handleEnter,
-        handleMouseenter,
-      } = useMenuSearch(refs, scrollWrap, emit);
+      const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } = useMenuSearch(
+        refs,
+        scrollWrap,
+        emit
+      );
 
       const getIsNotData = computed(() => {
         return !keyword || unref(searchResult).length === 0;

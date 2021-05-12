@@ -26,6 +26,8 @@
 
     <!-- action  -->
     <div :class="`${prefixCls}-action`">
+      <AppSearch :class="`${prefixCls}-action__item `" />
+
       <Notify v-if="getShowNotice" :class="`${prefixCls}-action__item notify-item`" />
 
       <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`" />
@@ -41,6 +43,7 @@
 
   import { Layout } from 'ant-design-vue';
   import { AppLogo } from '/@/components/Application';
+  import { AppSearch } from '/@/components/Application';
   import LayoutMenu from '../menu/index.vue';
   import LayoutTrigger from '../trigger/index.vue';
 
@@ -61,6 +64,7 @@
     components: {
       Header: Layout.Header,
       AppLogo,
+      AppSearch,
       LayoutTrigger,
       LayoutBreadcrumb,
       LayoutMenu,
