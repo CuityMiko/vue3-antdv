@@ -37,8 +37,6 @@
           >
             <LoginForm />
             <ForgetPasswordForm />
-            <RegisterForm />
-            <MobileForm />
           </div>
         </div>
       </div>
@@ -51,8 +49,6 @@
   import { AppLogo } from '/@/components/Application';
   import LoginForm from './LoginForm.vue';
   import ForgetPasswordForm from './ForgetPasswordForm.vue';
-  import RegisterForm from './RegisterForm.vue';
-  import MobileForm from './MobileForm.vue';
 
   import { useGlobSetting } from '/@/hooks/setting';
   import { useI18n } from '/@/hooks/web/useI18n';
@@ -65,8 +61,6 @@
       AppLogo,
       LoginForm,
       ForgetPasswordForm,
-      RegisterForm,
-      MobileForm,
     },
     setup() {
       const globSetting = useGlobSetting();

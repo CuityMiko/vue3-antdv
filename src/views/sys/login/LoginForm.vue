@@ -24,18 +24,6 @@
     <FormItem class="enter-x">
       <Button type="primary" size="large" block @click="handleLogin" :loading="loading"> 登 录 </Button>
     </FormItem>
-    <ARow class="enter-x" :gutter="16">
-      <ACol :md="12" :xs="24">
-        <Button block @click="setLoginState(LoginStateEnum.MOBILE)">
-          {{ t('sys.login.mobileSignInFormTitle') }}
-        </Button>
-      </ACol>
-      <ACol :md="12" :xs="24">
-        <Button block @click="setLoginState(LoginStateEnum.REGISTER)">
-          {{ t('sys.login.registerButton') }}
-        </Button>
-      </ACol>
-    </ARow>
   </Form>
 </template>
 <script lang="ts">
