@@ -89,7 +89,7 @@ const setting: ProjectConfig = {
     // Whether to show dom
     hidden: false,
     // Menu width
-    menuWidth: 210,
+    menuWidth: 180,
     // Menu mode
     mode: MenuModeEnum.INLINE,
     // Menu type
@@ -141,7 +141,7 @@ const setting: ProjectConfig = {
     openPageLoading: true,
 
     // Whether to open the top progress bar
-    openNProgress: false,
+    openNProgress: true,
   },
 
   // Whether to enable KeepAlive cache is best to close during development, otherwise the cache needs to be cleared every time
@@ -151,7 +151,7 @@ const setting: ProjectConfig = {
   lockTime: 0,
 
   // Whether to show breadcrumbs
-  showBreadCrumb: true,
+  showBreadCrumb: false,
 
   // Whether to show the breadcrumb icon
   showBreadCrumbIcon: false,

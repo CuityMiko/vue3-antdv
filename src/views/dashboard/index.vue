@@ -1,39 +1,104 @@
 <template>
-  <div class="p-4">
-    <GrowCard :loading="loading" class="enter-y" />
-    <SiteAnalysis class="!my-4 enter-y" :loading="loading" />
-
-    <div class="md:flex enter-y">
-      <VisitRadar class="md:w-1/3 w-full" :loading="loading" />
-
-      <VisitSource class="md:w-1/3 !md:mx-4 !md:my-0 !my-4 w-full" :loading="loading" />
-      <SalesProductPie class="md:w-1/3 w-full" :loading="loading" />
-    </div>
-  </div>
+  <PageWrapper dense contentFullHeight fixedHeight contentClass="flex">
+    <DeptTree class="w-1/4 xl:w-1/5" @select="handleSelect" />
+    <BasicTable @register="registerTable" class="w-3/4 xl:w-4/5">
+      <template #toolbar>
+        <a-button type="primary" @click="handleCreate">新增账号</a-button>
+      </template>
+      <template #action="{ record }">
+        <TableAction
+          :actions="[
+            {
+              icon: 'clarity:note-edit-line',
+              onClick: handleEdit.bind(null, record),
+            },
+            {
+              icon: 'ant-design:delete-outlined',
+              color: 'error',
+              popConfirm: {
+                title: '是否确认删除',
+                confirm: handleDelete.bind(null, record),
+              },
+            },
+          ]"
+        />
+      </template>
+    </BasicTable>
+    <AccountModal @register="registerModal" @success="handleSuccess" />
+  </PageWrapper>
 </template>
 <script lang="ts">
-  import { defineComponent, ref } from 'vue';
-  import GrowCard from './components/GrowCard.vue';
-  import SiteAnalysis from './components/SiteAnalysis.vue';
-  import VisitSource from './components/VisitSource.vue';
-  import VisitRadar from './components/VisitRadar.vue';
-  import SalesProductPie from './components/SalesProductPie.vue';
+  import { defineComponent } from 'vue';
+
+  import { BasicTable, useTable, TableAction } from '/@/components/Table';
+  import { getAccountList } from '/@/services/system';
+  import { PageWrapper } from '/@/components/Page';
+  import DeptTree from './DeptTree.vue';
+
+  import { useModal } from '/@/components/Modal';
+  import AccountModal from './AccountModal.vue';
+
+  import { columns, searchFormSchema } from './account.data';
 
   export default defineComponent({
-    components: {
-      GrowCard,
-      SiteAnalysis,
-      VisitRadar,
-      VisitSource,
-      SalesProductPie,
-    },
+    name: 'DashboardIndex',
+    components: { BasicTable, PageWrapper, DeptTree, AccountModal, TableAction },
     setup() {
-      const loading = ref(true);
+      const [registerModal, { openModal }] = useModal();
+      const [registerTable, { reload }] = useTable({
+        title: '账号列表',
+        api: getAccountList,
+        columns,
+        formConfig: {
+          labelWidth: 120,
+          schemas: searchFormSchema,
+        },
+        useSearchForm: true,
+        showTableSetting: true,
+        bordered: true,
+        actionColumn: {
+          width: 80,
+          title: '操作',
+          dataIndex: 'action',
+          slots: { customRender: 'action' },
+        },
+      });
 
-      setTimeout(() => {
-        loading.value = false;
-      }, 1500);
-      return { loading };
+      function handleCreate() {
+        openModal(true, {
+          isUpdate: false,
+        });
+      }
+
+      function handleEdit(record: Recordable) {
+        console.log(record);
+        openModal(true, {
+          record,
+          isUpdate: true,
+        });
+      }
+
+      function handleDelete(record: Recordable) {
+        console.log(record);
+      }
+
+      function handleSuccess() {
+        reload();
+      }
+
+      function handleSelect(deptId = '') {
+        reload({ searchInfo: { deptId } });
+      }
+
+      return {
+        registerTable,
+        registerModal,
+        handleCreate,
+        handleEdit,
+        handleDelete,
+        handleSuccess,
+        handleSelect,
+      };
     },
   });
 </script>
