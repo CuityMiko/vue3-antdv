@@ -7,7 +7,7 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/system_setting/scene_info',
   meta: {
-    icon: 'ion:grid-outline',
+    icon: 'carbon:calendar-settings',
     title: '系统设置',
   },
   children: [
@@ -16,7 +16,6 @@ const dashboard: AppRouteModule = {
       name: 'SceneInfo',
       component: () => import('/@/views/system_setting/scene_info/index.vue'),
       meta: {
-        affix: true,
         title: '场景信息',
       },
     },

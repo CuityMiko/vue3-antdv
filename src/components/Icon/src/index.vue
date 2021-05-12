@@ -8,17 +8,9 @@
   ></span>
 </template>
 <script lang="ts">
+  // 图标地址：https://iconify.design/icon-sets/
   import type { PropType } from 'vue';
-  import {
-    defineComponent,
-    ref,
-    watch,
-    onMounted,
-    nextTick,
-    unref,
-    computed,
-    CSSProperties,
-  } from 'vue';
+  import { defineComponent, ref, watch, onMounted, nextTick, unref, computed, CSSProperties } from 'vue';
 
   import SvgIcon from './SvgIcon.vue';
   import Iconify from '@purge-icons/generated';
@@ -72,21 +64,19 @@
         }
       };
 
-      const getWrapStyle = computed(
-        (): CSSProperties => {
-          const { size, color } = props;
-          let fs = size;
-          if (isString(size)) {
-            fs = parseInt(size, 10);
-          }
-
-          return {
-            fontSize: `${fs}px`,
-            color: color,
-            display: 'inline-flex',
-          };
+      const getWrapStyle = computed((): CSSProperties => {
+        const { size, color } = props;
+        let fs = size;
+        if (isString(size)) {
+          fs = parseInt(size, 10);
         }
-      );
+
+        return {
+          fontSize: `${fs}px`,
+          color: color,
+          display: 'inline-flex',
+        };
+      });
 
       watch(() => props.icon, update, { flush: 'post' });
 

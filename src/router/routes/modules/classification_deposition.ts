@@ -7,7 +7,7 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/classification_deposition/inspection_data',
   meta: {
-    icon: 'ion:grid-outline',
+    icon: 'bi:clipboard-data',
     title: '分类投放',
   },
   children: [
@@ -16,7 +16,6 @@ const dashboard: AppRouteModule = {
       name: 'InspectionData',
       component: () => import('/@/views/classification_deposition/inspection_data/index.vue'),
       meta: {
-        affix: true,
         title: '巡检数据明细',
       },
     },

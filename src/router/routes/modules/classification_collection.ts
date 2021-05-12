@@ -7,7 +7,7 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/classification_collection/collection_map',
   meta: {
-    icon: 'ion:grid-outline',
+    icon: 'carbon:map',
     title: '分类收运',
   },
   children: [
@@ -16,7 +16,6 @@ const dashboard: AppRouteModule = {
       name: 'CollectionMap',
       component: () => import('/@/views/classification_collection/collection_map/index.vue'),
       meta: {
-        affix: true,
         title: '收运地图',
       },
     },
