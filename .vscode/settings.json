@@ -106,14 +106,7 @@
     "plugins": ["html", "vue", "javascript", "jsx", "typescript"],
     "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
   },
-  "eslint.validate": [
-    "javascript",
-    "typescript",
-    "reacttypescript",
-    "reactjavascript",
-    "html",
-    "vue"
-  ],
+  "eslint.validate": ["javascript", "typescript", "reacttypescript", "reactjavascript", "html", "vue"],
   // ===========================================
   // ================ Vetur ====================
   // ===========================================

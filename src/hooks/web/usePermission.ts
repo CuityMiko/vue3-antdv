@@ -30,9 +30,7 @@ export function usePermission() {
   async function togglePermissionMode() {
     appStore.setProjectConfig({
       permissionMode:
-        projectSetting.permissionMode === PermissionModeEnum.BACK
-          ? PermissionModeEnum.ROLE
-          : PermissionModeEnum.BACK,
+        projectSetting.permissionMode === PermissionModeEnum.BACK ? PermissionModeEnum.ROLE : PermissionModeEnum.BACK,
     });
     location.reload();
   }
@@ -47,7 +45,7 @@ export function usePermission() {
     resetRouter();
     const routes = await permissionStore.buildRoutesAction(id);
     routes.forEach((route) => {
-      router.addRoute((route as unknown) as RouteRecordRaw);
+      router.addRoute(route as unknown as RouteRecordRaw);
     });
     permissionStore.setLastBuildMenuTime();
     closeAll();
@@ -90,9 +88,7 @@ export function usePermission() {
    */
   async function changeRole(roles: RoleEnum | RoleEnum[]): Promise<void> {
     if (projectSetting.permissionMode !== PermissionModeEnum.ROLE) {
-      throw new Error(
-        'Please switch PermissionModeEnum to ROLE mode in the configuration to operate!'
-      );
+      throw new Error('Please switch PermissionModeEnum to ROLE mode in the configuration to operate!');
     }
 
     if (!isArray(roles)) {

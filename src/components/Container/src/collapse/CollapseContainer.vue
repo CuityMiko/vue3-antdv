@@ -1,11 +1,6 @@
 <template>
   <div :class="prefixCls">
-    <CollapseHeader
-      v-bind="getBindValues"
-      :prefixCls="prefixCls"
-      :show="show"
-      @expand="handleExpand"
-    >
+    <CollapseHeader v-bind="getBindValues" :prefixCls="prefixCls" :show="show" @expand="handleExpand">
       <template #title>
         <slot name="title"></slot>
       </template>

@@ -10,11 +10,7 @@
     </template>
 
     <template #title v-if="!$slots.title">
-      <ModalHeader
-        :helpMessage="getProps.helpMessage"
-        :title="getMergeProps.title"
-        @dblclick="handleTitleDbClick"
-      />
+      <ModalHeader :helpMessage="getProps.helpMessage" :title="getMergeProps.title" @dblclick="handleTitleDbClick" />
     </template>
 
     <template #footer v-if="!$slots.footer">
@@ -51,17 +47,7 @@
 <script lang="ts">
   import type { ModalProps, ModalMethods } from './types';
 
-  import {
-    defineComponent,
-    computed,
-    ref,
-    watch,
-    unref,
-    watchEffect,
-    toRef,
-    getCurrentInstance,
-    nextTick,
-  } from 'vue';
+  import { defineComponent, computed, ref, watch, unref, watchEffect, toRef, getCurrentInstance, nextTick } from 'vue';
 
   import Modal from './components/Modal';
   import ModalWrapper from './components/ModalWrapper.vue';
@@ -107,14 +93,12 @@
       }
 
       // Custom title component: get title
-      const getMergeProps = computed(
-        (): ModalProps => {
-          return {
-            ...props,
-            ...(unref(propsRef) as any),
-          };
-        }
-      );
+      const getMergeProps = computed((): ModalProps => {
+        return {
+          ...props,
+          ...(unref(propsRef) as any),
+        };
+      });
 
       const { handleFullScreen, getWrapClassName, fullScreenRef } = useFullScreen({
         modalWrapperRef,
@@ -123,29 +107,25 @@
       });
 
       // modal component does not need title
-      const getProps = computed(
-        (): ModalProps => {
-          const opt = {
-            ...unref(getMergeProps),
-            visible: unref(visibleRef),
-            title: undefined,
-          };
-          return {
-            ...opt,
-            wrapClassName: unref(getWrapClassName),
-          };
-        }
-      );
+      const getProps = computed((): ModalProps => {
+        const opt = {
+          ...unref(getMergeProps),
+          visible: unref(visibleRef),
+          title: undefined,
+        };
+        return {
+          ...opt,
+          wrapClassName: unref(getWrapClassName),
+        };
+      });
 
-      const getBindValue = computed(
-        (): Recordable => {
-          const attr = { ...attrs, ...unref(getProps) };
-          if (unref(fullScreenRef)) {
-            return omit(attr, 'height');
-          }
-          return attr;
+      const getBindValue = computed((): Recordable => {
+        const attr = { ...attrs, ...unref(getProps) };
+        if (unref(fullScreenRef)) {
+          return omit(attr, 'height');
         }
-      );
+        return attr;
+      });
 
       const getWrapperHeight = computed(() => {
         if (unref(fullScreenRef)) return undefined;

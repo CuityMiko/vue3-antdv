@@ -6,10 +6,7 @@ import { cloneDeep } from 'lodash-es';
 import { unref } from 'vue';
 import { forEach } from '/@/utils/helper/treeHelper';
 
-export function useTree(
-  treeDataRef: Ref<TreeDataItem[]>,
-  getReplaceFields: ComputedRef<ReplaceFields>
-) {
+export function useTree(treeDataRef: Ref<TreeDataItem[]>, getReplaceFields: ComputedRef<ReplaceFields>) {
   function getAllKeys(list?: TreeDataItem[]) {
     const keys: string[] = [];
     const treeData = list || unref(treeDataRef);

@@ -118,12 +118,7 @@ export function useTableScroll(
     }
 
     let height =
-      bottomIncludeBody -
-      (resizeHeightOffset || 0) -
-      paddingHeight -
-      paginationHeight -
-      footerHeight -
-      headerHeight;
+      bottomIncludeBody - (resizeHeightOffset || 0) - paddingHeight - paginationHeight - footerHeight - headerHeight;
 
     height = (height > maxHeight! ? (maxHeight as number) : height) ?? height;
     setHeight(height);

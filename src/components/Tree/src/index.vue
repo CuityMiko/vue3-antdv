@@ -1,17 +1,7 @@
 <script lang="tsx">
   import type { ReplaceFields, Keys, CheckKeys, TreeActionType, TreeItem } from './types';
 
-  import {
-    defineComponent,
-    reactive,
-    computed,
-    unref,
-    ref,
-    watchEffect,
-    toRaw,
-    watch,
-    CSSProperties,
-  } from 'vue';
+  import { defineComponent, reactive, computed, unref, ref, watchEffect, toRaw, watch, CSSProperties } from 'vue';
   import { Tree, Empty } from 'ant-design-vue';
   import { TreeIcon } from './TreeIcon';
   import TreeHeader from './TreeHeader.vue';
@@ -58,17 +48,15 @@
       const [createContextMenu] = useContextMenu();
       const { prefixCls } = useDesign('basic-tree');
 
-      const getReplaceFields = computed(
-        (): Required<ReplaceFields> => {
-          const { replaceFields } = props;
-          return {
-            children: 'children',
-            title: 'title',
-            key: 'key',
-            ...replaceFields,
-          };
-        }
-      );
+      const getReplaceFields = computed((): Required<ReplaceFields> => {
+        const { replaceFields } = props;
+        return {
+          children: 'children',
+          title: 'title',
+          key: 'key',
+          ...replaceFields,
+        };
+      });
 
       const getBindValues = computed(() => {
         let propsData = {
@@ -109,13 +97,10 @@
         return searchState.startSearch && searchState.searchData?.length === 0;
       });
 
-      const {
-        deleteNodeByKey,
-        insertNodeByKey,
-        filterByLevel,
-        updateNodeByKey,
-        getAllKeys,
-      } = useTree(treeDataRef, getReplaceFields);
+      const { deleteNodeByKey, insertNodeByKey, filterByLevel, updateNodeByKey, getAllKeys } = useTree(
+        treeDataRef,
+        getReplaceFields
+      );
 
       function getIcon(params: Recordable, icon?: string) {
         if (!icon) {
@@ -285,9 +270,7 @@
           return null;
         }
         return data.map((item) => {
-          const { title: titleField, key: keyField, children: childrenField } = unref(
-            getReplaceFields
-          );
+          const { title: titleField, key: keyField, children: childrenField } = unref(getReplaceFields);
 
           const propsData = omit(item, 'title');
           const icon = getIcon({ ...item, level }, item.icon);
@@ -306,9 +289,7 @@
                       <>
                         {icon && <TreeIcon icon={icon} />}
                         <span class={`${prefixCls}__content`}>{get(item, titleField)}</span>
-                        <span class={`${prefixCls}__actions`}>
-                          {renderAction({ ...item, level })}
-                        </span>
+                        <span class={`${prefixCls}__actions`}>{renderAction({ ...item, level })}</span>
                       </>
                     )}
                   </span>
@@ -378,7 +359,7 @@
       display: flex;
       align-items: center;
       width: 100%;
-      padding-right: 10px;
+      padding-right: 20px;
 
       &:hover {
         .@{prefix-cls}__action {

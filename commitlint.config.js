@@ -5,17 +5,7 @@ module.exports = {
     parserOpts: {
       headerPattern: /^(\w*|[\u4e00-\u9fa5]*)(?:[\(\（](.*)[\)\）])?[\:\：] (.*)/,
       headerCorrespondence: ['type', 'scope', 'subject'],
-      referenceActions: [
-        'close',
-        'closes',
-        'closed',
-        'fix',
-        'fixes',
-        'fixed',
-        'resolve',
-        'resolves',
-        'resolved',
-      ],
+      referenceActions: ['close', 'closes', 'closed', 'fix', 'fixes', 'fixed', 'resolve', 'resolves', 'resolved'],
       issuePrefixes: ['#'],
       noteKeywords: ['BREAKING CHANGE'],
       fieldPattern: /^-(.*?)-$/,

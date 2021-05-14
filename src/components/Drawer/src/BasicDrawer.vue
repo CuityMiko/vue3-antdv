@@ -1,12 +1,7 @@
 <template>
   <Drawer :class="prefixCls" @close="onClose" v-bind="getBindValues">
     <template #title v-if="!$slots.title">
-      <DrawerHeader
-        :title="getMergeProps.title"
-        :isDetail="isDetail"
-        :showDetailBack="showDetailBack"
-        @close="onClose"
-      >
+      <DrawerHeader :title="getMergeProps.title" :isDetail="isDetail" :showDetailBack="showDetailBack" @close="onClose">
         <template #titleToolbar>
           <slot name="titleToolbar"></slot>
         </template>
@@ -34,17 +29,7 @@
   import type { DrawerInstance, DrawerProps } from './types';
   import type { CSSProperties } from 'vue';
 
-  import {
-    defineComponent,
-    ref,
-    computed,
-    watchEffect,
-    watch,
-    unref,
-    nextTick,
-    toRaw,
-    getCurrentInstance,
-  } from 'vue';
+  import { defineComponent, ref, computed, watchEffect, watch, unref, nextTick, toRaw, getCurrentInstance } from 'vue';
   import { Drawer } from 'ant-design-vue';
 
   import { useI18n } from '/@/hooks/web/useI18n';
@@ -81,67 +66,57 @@
 
       instance && emit('register', drawerInstance, instance.uid);
 
-      const getMergeProps = computed(
-        (): DrawerProps => {
-          return deepMerge(toRaw(props), unref(propsRef));
-        }
-      );
+      const getMergeProps = computed((): DrawerProps => {
+        return deepMerge(toRaw(props), unref(propsRef));
+      });
 
-      const getProps = computed(
-        (): DrawerProps => {
-          const opt = {
-            placement: 'right',
-            ...unref(attrs),
-            ...unref(getMergeProps),
-            visible: unref(visibleRef),
-          };
-          opt.title = undefined;
-          const { isDetail, width, wrapClassName, getContainer } = opt;
-          if (isDetail) {
-            if (!width) {
-              opt.width = '100%';
-            }
-            const detailCls = `${prefixCls}__detail`;
-            opt.wrapClassName = wrapClassName ? `${wrapClassName} ${detailCls}` : detailCls;
-
-            if (!getContainer) {
-              // TODO type error?
-              opt.getContainer = `.${prefixVar}-layout-content` as any;
-            }
+      const getProps = computed((): DrawerProps => {
+        const opt = {
+          placement: 'right',
+          ...unref(attrs),
+          ...unref(getMergeProps),
+          visible: unref(visibleRef),
+        };
+        opt.title = undefined;
+        const { isDetail, width, wrapClassName, getContainer } = opt;
+        if (isDetail) {
+          if (!width) {
+            opt.width = '100%';
           }
-          return opt as DrawerProps;
-        }
-      );
+          const detailCls = `${prefixCls}__detail`;
+          opt.wrapClassName = wrapClassName ? `${wrapClassName} ${detailCls}` : detailCls;
 
-      const getBindValues = computed(
-        (): DrawerProps => {
-          return {
-            ...attrs,
-            ...unref(getProps),
-          };
+          if (!getContainer) {
+            // TODO type error?
+            opt.getContainer = `.${prefixVar}-layout-content` as any;
+          }
         }
-      );
+        return opt as DrawerProps;
+      });
+
+      const getBindValues = computed((): DrawerProps => {
+        return {
+          ...attrs,
+          ...unref(getProps),
+        };
+      });
 
       // Custom implementation of the bottom button,
       const getFooterHeight = computed(() => {
         const { footerHeight, showFooter } = unref(getProps);
         if (showFooter && footerHeight) {
-          return isNumber(footerHeight)
-            ? `${footerHeight}px`
-            : `${footerHeight.replace('px', '')}px`;
+          return isNumber(footerHeight) ? `${footerHeight}px` : `${footerHeight.replace('px', '')}px`;
         }
         return `0px`;
       });
 
-      const getScrollContentStyle = computed(
-        (): CSSProperties => {
-          const footerHeight = unref(getFooterHeight);
-          return {
-            position: 'relative',
-            height: `calc(100% - ${footerHeight})`,
-          };
-        }
-      );
+      const getScrollContentStyle = computed((): CSSProperties => {
+        const footerHeight = unref(getFooterHeight);
+        return {
+          position: 'relative',
+          height: `calc(100% - ${footerHeight})`,
+        };
+      });
 
       const getLoading = computed(() => {
         return !!unref(getProps)?.loading;

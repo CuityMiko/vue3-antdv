@@ -6,11 +6,7 @@
     <template #overlay>
       <a-menu :selectedKeys="selectedKeys">
         <template v-for="item in dropMenuList" :key="`${item.event}`">
-          <a-menu-item
-            v-bind="getAttr(item.event)"
-            @click="handleClickMenu(item)"
-            :disabled="item.disabled"
-          >
+          <a-menu-item v-bind="getAttr(item.event)" @click="handleClickMenu(item)" :disabled="item.disabled">
             <Popconfirm v-if="popconfirm && item.popConfirm" v-bind="item">
               <Icon :icon="item.icon" v-if="item.icon" />
               <span class="ml-1">{{ item.text }}</span>

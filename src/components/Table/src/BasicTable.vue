@@ -97,13 +97,8 @@
       });
 
       const { getLoading, setLoading } = useLoading(getProps);
-      const {
-        getPaginationInfo,
-        getPagination,
-        setPagination,
-        setShowPagination,
-        getShowPagination,
-      } = usePagination(getProps);
+      const { getPaginationInfo, getPagination, setPagination, setShowPagination, getShowPagination } =
+        usePagination(getProps);
 
       const {
         getRowSelection,
@@ -138,14 +133,8 @@
         emit
       );
 
-      const {
-        getViewColumns,
-        getColumns,
-        setCacheColumnsByField,
-        setColumns,
-        getColumnsRef,
-        getCacheColumns,
-      } = useColumns(getProps, getPaginationInfo);
+      const { getViewColumns, getColumns, setCacheColumnsByField, setColumns, getColumnsRef, getCacheColumns } =
+        useColumns(getProps, getPaginationInfo);
 
       const { getScrollRef, redoHeight } = useTableScroll(
         getProps,
@@ -169,19 +158,14 @@
 
       const { getHeaderProps } = useTableHeader(getProps, slots);
 
-      const { getFooterProps } = useTableFooter(
-        getProps,
-        getScrollRef,
-        tableElRef,
-        getDataSourceRef
-      );
+      const { getFooterProps } = useTableFooter(getProps, getScrollRef, tableElRef, getDataSourceRef);
 
-      const {
-        getFormProps,
-        replaceFormSlotKey,
-        getFormSlotKeys,
-        handleSearchInfoChange,
-      } = useTableForm(getProps, slots, fetch, getLoading);
+      const { getFormProps, replaceFormSlotKey, getFormSlotKeys, handleSearchInfoChange } = useTableForm(
+        getProps,
+        slots,
+        fetch,
+        getLoading
+      );
 
       const getBindValues = computed(() => {
         const dataSource = unref(getDataSourceRef);

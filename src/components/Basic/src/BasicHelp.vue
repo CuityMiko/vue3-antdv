@@ -42,22 +42,18 @@
     setup(props, { slots }) {
       const { prefixCls } = useDesign('basic-help');
 
-      const getOverlayStyle = computed(
-        (): CSSProperties => {
-          return {
-            maxWidth: props.maxWidth,
-          };
-        }
-      );
+      const getOverlayStyle = computed((): CSSProperties => {
+        return {
+          maxWidth: props.maxWidth,
+        };
+      });
 
-      const getWrapStyle = computed(
-        (): CSSProperties => {
-          return {
-            color: props.color,
-            fontSize: props.fontSize,
-          };
-        }
-      );
+      const getWrapStyle = computed((): CSSProperties => {
+        return {
+          color: props.color,
+          fontSize: props.fontSize,
+        };
+      });
 
       const getMainStyleRef = computed(() => {
         return props.absolute ? props.position : {};

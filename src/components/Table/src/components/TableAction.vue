@@ -5,17 +5,9 @@
         <Icon :icon="action.icon" class="mr-1" v-if="action.icon" />
         {{ action.label }}
       </PopConfirmButton>
-      <Divider
-        type="vertical"
-        v-if="divider && index < getActions.length - (dropDownActions ? 0 : 1)"
-      />
+      <Divider type="vertical" v-if="divider && index < getActions.length - (dropDownActions ? 0 : 1)" />
     </template>
-    <Dropdown
-      :trigger="['hover']"
-      :dropMenuList="getDropdownList"
-      popconfirm
-      v-if="dropDownActions"
-    >
+    <Dropdown :trigger="['hover']" :dropMenuList="getDropdownList" popconfirm v-if="dropDownActions">
       <slot name="more"></slot>
       <a-button type="link" size="small" v-if="!$slots.more">
         <MoreOutlined class="icon-more" />

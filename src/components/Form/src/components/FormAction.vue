@@ -2,34 +2,17 @@
   <a-col v-bind="actionColOpt" :style="{ textAlign: 'right' }" v-if="showActionButtonGroup">
     <FormItem>
       <slot name="resetBefore"></slot>
-      <Button
-        type="default"
-        class="mr-2"
-        v-bind="getResetBtnOptions"
-        @click="resetAction"
-        v-if="showResetButton"
-      >
+      <Button type="default" class="mr-2" v-bind="getResetBtnOptions" @click="resetAction" v-if="showResetButton">
         {{ getResetBtnOptions.text }}
       </Button>
       <slot name="submitBefore"></slot>
 
-      <Button
-        type="primary"
-        class="mr-2"
-        v-bind="getSubmitBtnOptions"
-        @click="submitAction"
-        v-if="showSubmitButton"
-      >
+      <Button type="primary" class="mr-2" v-bind="getSubmitBtnOptions" @click="submitAction" v-if="showSubmitButton">
         {{ getSubmitBtnOptions.text }}
       </Button>
 
       <slot name="advanceBefore"></slot>
-      <Button
-        type="link"
-        size="small"
-        @click="toggleAdvanced"
-        v-if="showAdvancedButton && !hideAdvanceBtn"
-      >
+      <Button type="link" size="small" @click="toggleAdvanced" v-if="showAdvancedButton && !hideAdvanceBtn">
         {{ isAdvanced ? t('component.form.putAway') : t('component.form.unfold') }}
         <BasicArrow class="ml-1" :expand="!isAdvanced" top />
       </Button>
@@ -88,9 +71,7 @@
       const actionColOpt = computed(() => {
         const { showAdvancedButton, actionSpan: span, actionColOptions } = props;
         const actionSpan = 24 - span;
-        const advancedSpanObj = showAdvancedButton
-          ? { span: actionSpan < 6 ? 24 : actionSpan }
-          : {};
+        const advancedSpanObj = showAdvancedButton ? { span: actionSpan < 6 ? 24 : actionSpan } : {};
         const actionColOpt: Partial<ColEx> = {
           span: showAdvancedButton ? 6 : 4,
           ...advancedSpanObj,
@@ -99,16 +80,14 @@
         return actionColOpt;
       });
 
-      const getResetBtnOptions = computed(
-        (): ButtonOptions => {
-          return Object.assign(
-            {
-              text: t('common.resetText'),
-            },
-            props.resetButtonOptions
-          );
-        }
-      );
+      const getResetBtnOptions = computed((): ButtonOptions => {
+        return Object.assign(
+          {
+            text: t('common.resetText'),
+          },
+          props.resetButtonOptions
+        );
+      });
 
       const getSubmitBtnOptions = computed(() => {
         return Object.assign(

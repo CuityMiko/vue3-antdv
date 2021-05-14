@@ -1,7 +1,1 @@
-export type ComponentType =
-  | 'Input'
-  | 'InputNumber'
-  | 'Select'
-  | 'ApiSelect'
-  | 'Checkbox'
-  | 'Switch';
+export type ComponentType = 'Input' | 'InputNumber' | 'Select' | 'ApiSelect' | 'Checkbox' | 'Switch';

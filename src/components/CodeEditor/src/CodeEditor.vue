@@ -31,9 +31,7 @@
         const { value, mode } = props;
 
         if (mode === MODE.JSON) {
-          return isString(value)
-            ? JSON.stringify(JSON.parse(value), null, 2)
-            : JSON.stringify(value, null, 2);
+          return isString(value) ? JSON.stringify(JSON.parse(value), null, 2) : JSON.stringify(value, null, 2);
         }
         return value;
       });

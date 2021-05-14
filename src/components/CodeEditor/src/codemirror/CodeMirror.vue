@@ -3,16 +3,7 @@
 </template>
 
 <script lang="ts">
-  import {
-    ref,
-    onMounted,
-    onUnmounted,
-    watchEffect,
-    watch,
-    defineComponent,
-    unref,
-    nextTick,
-  } from 'vue';
+  import { ref, onMounted, onUnmounted, watchEffect, watch, defineComponent, unref, nextTick } from 'vue';
   import { useDebounceFn } from '@vueuse/core';
   import { useAppStore } from '/@/store/modules/app';
 
@@ -73,10 +64,7 @@
       );
 
       function setTheme() {
-        unref(editor)?.setOption(
-          'theme',
-          appStore.getDarkMode === 'light' ? 'idea' : 'material-palenight'
-        );
+        unref(editor)?.setOption('theme', appStore.getDarkMode === 'light' ? 'idea' : 'material-palenight');
       }
 
       function refresh() {

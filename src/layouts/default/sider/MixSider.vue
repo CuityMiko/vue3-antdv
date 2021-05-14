@@ -62,18 +62,9 @@
         />
       </div>
       <ScrollContainer :class="`${prefixCls}-menu-list__content`">
-        <SimpleMenu
-          :items="chilrenMenus"
-          :theme="getMenuTheme"
-          mixSider
-          @menuClick="handleMenuClick"
-        />
+        <SimpleMenu :items="chilrenMenus" :theme="getMenuTheme" mixSider @menuClick="handleMenuClick" />
       </ScrollContainer>
-      <div
-        v-show="getShowDragBar && openMenu"
-        :class="`${prefixCls}-drag-bar`"
-        ref="dragBarRef"
-      ></div>
+      <div v-show="getShowDragBar && openMenu" :class="`${prefixCls}-drag-bar`" ref="dragBarRef"></div>
     </div>
   </div>
 </template>
@@ -147,14 +138,12 @@
 
       useDragLine(sideRef, dragBarRef, true);
 
-      const getMenuStyle = computed(
-        (): CSSProperties => {
-          return {
-            width: unref(openMenu) ? `${unref(getMenuWidth)}px` : 0,
-            left: `${unref(getMixSideWidth)}px`,
-          };
-        }
-      );
+      const getMenuStyle = computed((): CSSProperties => {
+        return {
+          width: unref(openMenu) ? `${unref(getMenuWidth)}px` : 0,
+          left: `${unref(getMixSideWidth)}px`,
+        };
+      });
 
       const getIsFixed = computed(() => {
         /* eslint-disable-next-line */
@@ -171,20 +160,16 @@
         return unref(getCollapsed) ? SIDE_BAR_MINI_WIDTH : SIDE_BAR_SHOW_TIT_MINI_WIDTH;
       });
 
-      const getDomStyle = computed(
-        (): CSSProperties => {
-          const fixedWidth = unref(getIsFixed) ? unref(getRealWidth) : 0;
-          const width = `${unref(getMixSideWidth) + fixedWidth}px`;
-          return getWrapCommonStyle(width);
-        }
-      );
+      const getDomStyle = computed((): CSSProperties => {
+        const fixedWidth = unref(getIsFixed) ? unref(getRealWidth) : 0;
+        const width = `${unref(getMixSideWidth) + fixedWidth}px`;
+        return getWrapCommonStyle(width);
+      });
 
-      const getWrapStyle = computed(
-        (): CSSProperties => {
-          const width = `${unref(getMixSideWidth)}px`;
-          return getWrapCommonStyle(width);
-        }
-      );
+      const getWrapStyle = computed((): CSSProperties => {
+        const width = `${unref(getMixSideWidth)}px`;
+        return getWrapCommonStyle(width);
+      });
 
       const getMenuEvents = computed(() => {
         return !unref(getMixSideFixed)

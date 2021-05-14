@@ -1,17 +1,7 @@
 import type { BasicTableProps, FetchParams, SorterResult } from '../types/table';
 import type { PaginationProps } from '../types/pagination';
 
-import {
-  ref,
-  unref,
-  ComputedRef,
-  computed,
-  onMounted,
-  watch,
-  reactive,
-  Ref,
-  watchEffect,
-} from 'vue';
+import { ref, unref, ComputedRef, computed, onMounted, watch, reactive, Ref, watchEffect } from 'vue';
 
 import { useTimeoutFn } from '/@/hooks/core/useTimeout';
 
@@ -36,14 +26,7 @@ interface SearchState {
 }
 export function useDataSource(
   propsRef: ComputedRef<BasicTableProps>,
-  {
-    getPaginationInfo,
-    setPagination,
-    setLoading,
-    getFieldsValue,
-    clearSelectedRowKeys,
-    tableData,
-  }: ActionType,
+  { getPaginationInfo, setPagination, setLoading, getFieldsValue, clearSelectedRowKeys, tableData }: ActionType,
   emit: EmitType
 ) {
   const searchState = reactive<SearchState>({
@@ -150,15 +133,7 @@ export function useDataSource(
   }
 
   async function fetch(opt?: FetchParams) {
-    const {
-      api,
-      searchInfo,
-      fetchSetting,
-      beforeFetch,
-      afterFetch,
-      useSearchForm,
-      pagination,
-    } = unref(propsRef);
+    const { api, searchInfo, fetchSetting, beforeFetch, afterFetch, useSearchForm, pagination } = unref(propsRef);
     if (!api || !isFunction(api)) return;
     try {
       setLoading(true);

@@ -1,10 +1,5 @@
 <template>
-  <MenuItem
-    :name="item.path"
-    v-if="!menuHasChildren(item) && getShowMenu"
-    v-bind="$props"
-    :class="getLevelClass"
-  >
+  <MenuItem :name="item.path" v-if="!menuHasChildren(item) && getShowMenu" v-bind="$props" :class="getLevelClass">
     <Icon v-if="getIcon" :icon="getIcon" :size="16" />
     <div v-if="collapsedShowTitle && getIsCollapseParent" class="mt-1 collapse-title">
       {{ getI18nName }}

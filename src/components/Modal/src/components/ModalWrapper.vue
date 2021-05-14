@@ -9,17 +9,7 @@
   import type { ModalWrapperProps } from '../types';
   import type { CSSProperties } from 'vue';
 
-  import {
-    defineComponent,
-    computed,
-    ref,
-    watchEffect,
-    unref,
-    watch,
-    onMounted,
-    nextTick,
-    onUnmounted,
-  } from 'vue';
+  import { defineComponent, computed, ref, watchEffect, unref, watch, onMounted, nextTick, onUnmounted } from 'vue';
 
   import { useWindowSizeFn } from '/@/hooks/event/useWindowSizeFn';
   import { ScrollContainer } from '/@/components/Container';
@@ -60,15 +50,13 @@
         redoModalHeight: setModalHeight,
       });
 
-      const spinStyle = computed(
-        (): CSSProperties => {
-          return {
-            minHeight: `${props.minHeight}px`,
-            // padding 28
-            height: `${unref(realHeightRef)}px`,
-          };
-        }
-      );
+      const spinStyle = computed((): CSSProperties => {
+        return {
+          minHeight: `${props.minHeight}px`,
+          // padding 28
+          height: `${unref(realHeightRef)}px`,
+        };
+      });
 
       watchEffect(() => {
         props.useWrapper && setModalHeight();
@@ -143,14 +131,9 @@
           // }
 
           if (props.fullScreen) {
-            realHeightRef.value =
-              window.innerHeight - props.modalFooterHeight - props.modalHeaderHeight - 28;
+            realHeightRef.value = window.innerHeight - props.modalFooterHeight - props.modalHeaderHeight - 28;
           } else {
-            realHeightRef.value = props.height
-              ? props.height
-              : realHeight > maxHeight
-              ? maxHeight
-              : realHeight;
+            realHeightRef.value = props.height ? props.height : realHeight > maxHeight ? maxHeight : realHeight;
           }
           emit('height-change', unref(realHeightRef));
         } catch (error) {

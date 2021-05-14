@@ -1,18 +1,18 @@
 <template>
-  <div class="flex px-2 py-1.5 items-center basic-tree-header">
-    <slot name="headerTitle" v-if="$slots.headerTitle"></slot>
+  <div class="px-2 py-1.5 basic-tree-header">
+    <div class="mb-2 font-medium text-lg">
+      <slot name="headerTitle" v-if="$slots.headerTitle"></slot>
+    </div>
     <BasicTitle :helpMessage="helpMessage" v-if="!$slots.headerTitle && title">
       {{ title }}
     </BasicTitle>
-
-    <div class="flex flex-1 justify-end items-center cursor-pointer" v-if="search || toolbar">
-      <div class="mr-1 w-2/3" v-if="search">
-        <InputSearch
-          :placeholder="t('common.searchText')"
-          size="small"
-          allowClear
-          @change="handleSearch"
-        />
+    <div
+      class="flex flex-1 items-center cursor-pointer"
+      v-if="search || toolbar"
+      style="justify-content: space-between"
+    >
+      <div class="mr-1 w-3/3" v-if="search">
+        <InputSearch :placeholder="t('common.searchText')" allowClear @change="handleSearch" />
       </div>
       <Dropdown @click.prevent v-if="toolbar">
         <Icon icon="ion:ellipsis-vertical" />
@@ -27,6 +27,9 @@
           </Menu>
         </template>
       </Dropdown>
+    </div>
+    <div class="mt-2 mb-1 text-lg">
+      <slot name="headerTools" v-if="$slots.headerTools"></slot>
     </div>
   </div>
 </template>

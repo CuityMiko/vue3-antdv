@@ -76,13 +76,11 @@
         );
       });
 
-      const getWrapperStyle = computed(
-        (): CSSProperties => {
-          return {
-            height: `calc(100% - ${unref(getIsShowLogo) ? '48px' : '0px'})`,
-          };
-        }
-      );
+      const getWrapperStyle = computed((): CSSProperties => {
+        return {
+          height: `calc(100% - ${unref(getIsShowLogo) ? '48px' : '0px'})`,
+        };
+      });
 
       const getLogoClass = computed(() => {
         return [
@@ -132,11 +130,7 @@
         if (!unref(getIsShowLogo) && !unref(getIsMobile)) return null;
 
         return (
-          <AppLogo
-            showTitle={!unref(getCollapsed)}
-            class={unref(getLogoClass)}
-            theme={unref(getComputedMenuTheme)}
-          />
+          <AppLogo showTitle={!unref(getCollapsed)} class={unref(getLogoClass)} theme={unref(getComputedMenuTheme)} />
         );
       }
 

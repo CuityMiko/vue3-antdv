@@ -127,14 +127,7 @@
       }
 
       function handleRules(): ValidationRule[] {
-        const {
-          rules: defRules = [],
-          component,
-          rulesMessageJoinLabel,
-          label,
-          dynamicRules,
-          required,
-        } = props.schema;
+        const { rules: defRules = [], component, rulesMessageJoinLabel, label, dynamicRules, required } = props.schema;
 
         if (isFunction(dynamicRules)) {
           return dynamicRules(unref(getValues)) as ValidationRule[];
@@ -164,8 +157,7 @@
               ? rulesMessageJoinLabel
               : globalRulesMessageJoinLabel;
 
-            rule.message =
-              rule.message || createPlaceholderMessage(component) + `${joinLabel ? label : ''}`;
+            rule.message = rule.message || createPlaceholderMessage(component) + `${joinLabel ? label : ''}`;
 
             if (component.includes('Input') || component.includes('Textarea')) {
               rule.whitespace = true;
@@ -179,20 +171,13 @@
         const characterInx = rules.findIndex((val) => val.max);
         if (characterInx !== -1 && !rules[characterInx].validator) {
           rules[characterInx].message =
-            rules[characterInx].message ||
-            t('component.form.maxTip', [rules[characterInx].max] as Recordable);
+            rules[characterInx].message || t('component.form.maxTip', [rules[characterInx].max] as Recordable);
         }
         return rules;
       }
 
       function renderComponent() {
-        const {
-          renderComponentContent,
-          component,
-          field,
-          changeEvent = 'change',
-          valueField,
-        } = props.schema;
+        const { renderComponentContent, component, field, changeEvent = 'change', valueField } = props.schema;
 
         const isCheck = component && ['Switch', 'Checkbox'].includes(component);
 
@@ -223,8 +208,7 @@
         let placeholder;
         // RangePicker place is an array
         if (isCreatePlaceholder && component !== 'RangePicker' && component) {
-          placeholder =
-            unref(getComponentsProps)?.placeholder || createPlaceholderMessage(component);
+          placeholder = unref(getComponentsProps)?.placeholder || createPlaceholderMessage(component);
         }
         propsData.placeholder = placeholder;
         propsData.codeField = field;
@@ -278,11 +262,7 @@
         const { colon } = props.formProps;
 
         const getContent = () => {
-          return slot
-            ? getSlot(slots, slot, unref(getValues))
-            : render
-            ? render(unref(getValues))
-            : renderComponent();
+          return slot ? getSlot(slots, slot, unref(getValues)) : render ? render(unref(getValues)) : renderComponent();
         };
 
         const showSuffix = !!suffix;
@@ -318,11 +298,7 @@
 
         const values = unref(getValues);
         const getContent = () => {
-          return colSlot
-            ? getSlot(slots, colSlot, values)
-            : renderColContent
-            ? renderColContent(values)
-            : renderItem();
+          return colSlot ? getSlot(slots, colSlot, values) : renderColContent ? renderColContent(values) : renderItem();
         };
 
         return (

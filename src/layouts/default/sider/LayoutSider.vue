@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="getMenuFixed && !getIsMobile"
-    :style="getHiddenDomStyle"
-    v-show="showClassSideBarRef"
-  ></div>
+  <div v-if="getMenuFixed && !getIsMobile" :style="getHiddenDomStyle" v-show="showClassSideBarRef"></div>
   <Sider
     v-show="showClassSideBarRef"
     ref="sideRef"
@@ -89,19 +85,17 @@
         ];
       });
 
-      const getHiddenDomStyle = computed(
-        (): CSSProperties => {
-          const width = `${unref(getRealWidth)}px`;
-          return {
-            width: width,
-            overflow: 'hidden',
-            flex: `0 0 ${width}`,
-            maxWidth: width,
-            minWidth: width,
-            transition: 'all 0.2s',
-          };
-        }
-      );
+      const getHiddenDomStyle = computed((): CSSProperties => {
+        const width = `${unref(getRealWidth)}px`;
+        return {
+          width: width,
+          overflow: 'hidden',
+          flex: `0 0 ${width}`,
+          maxWidth: width,
+          minWidth: width,
+          transition: 'all 0.2s',
+        };
+      });
 
       return {
         prefixCls,

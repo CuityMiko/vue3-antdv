@@ -1,36 +1,48 @@
 <template>
-  <LoginFormTitle v-show="getShow" class="enter-x" />
-  <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef" v-show="getShow">
-    <FormItem name="account" class="enter-x">
-      <Input size="large" v-model:value="formData.account" placeholder="请输入账号..." />
-    </FormItem>
-    <FormItem name="password" class="enter-x">
-      <InputPassword size="large" visibilityToggle v-model:value="formData.password" placeholder="请输入密码..." />
-    </FormItem>
+  <div class="login-wrapper">
+    <h1>登录</h1>
+    <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef" v-show="getShow">
+      <h3>账号</h3>
+      <FormItem name="account" class="enter-x" style="margin-bottom: 15px">
+        <Input size="large" v-model:value="formData.account" placeholder="请输入账号..." />
+      </FormItem>
+      <h3>密码</h3>
+      <FormItem name="password" class="enter-x" style="margin-bottom: 15px">
+        <InputPassword size="large" visibilityToggle v-model:value="formData.password" placeholder="请输入密码..." />
+      </FormItem>
 
-    <ARow class="enter-x">
-      <ACol :span="12">
-        <FormItem>
-          <Checkbox v-model:checked="rememberMe" size="small"> 记住我 </Checkbox>
-        </FormItem>
-      </ACol>
-      <ACol :span="12">
-        <FormItem :style="{ 'text-align': 'right' }">
-          <Button type="link" size="small" @click="setLoginState(LoginStateEnum.RESET_PASSWORD)"> 忘记密码？ </Button>
-        </FormItem>
-      </ACol>
-    </ARow>
+      <ARow class="enter-x" style="margin-bottom: 15px" :justify="'space-between'">
+        <ACol :span="15">
+          <Input size="large" v-model:value="formData.code" placeholder="请输入验证码" />
+        </ACol>
+        <ACol :span="8">
+          <img src="" alt="" />
+        </ACol>
+      </ARow>
 
-    <FormItem class="enter-x">
-      <Button type="primary" size="large" block @click="handleLogin" :loading="loading"> 登 录 </Button>
-    </FormItem>
-  </Form>
+      <FormItem class="enter-x">
+        <Button type="primary" size="large" block @click="handleLogin" :loading="loading"> 登 录 </Button>
+      </FormItem>
+
+      <ARow class="enter-x">
+        <!-- <ACol :span="12">
+          <FormItem>
+            <Checkbox v-model:checked="rememberMe" size="small"> 记住我 </Checkbox>
+          </FormItem>
+        </ACol> -->
+        <ACol :span="24">
+          <FormItem :style="{ 'text-align': 'right', 'margin-bottom': '0px' }">
+            <Button type="link" size="small" @click="setLoginState(LoginStateEnum.RESET_PASSWORD)"> 忘记密码？ </Button>
+          </FormItem>
+        </ACol>
+      </ARow>
+    </Form>
+  </div>
 </template>
 <script lang="ts">
   import { defineComponent, reactive, ref, toRaw, unref, computed } from 'vue';
 
-  import { Checkbox, Form, Input, Row, Col, Button } from 'ant-design-vue';
-  import LoginFormTitle from './LoginFormTitle.vue';
+  import { Form, Input, Row, Col, Button } from 'ant-design-vue';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useMessage } from '/@/hooks/web/useMessage';
 
@@ -44,12 +56,10 @@
     components: {
       [Col.name]: Col,
       [Row.name]: Row,
-      Checkbox,
       Button,
       Form,
       FormItem: Form.Item,
       Input,
-      LoginFormTitle,
       InputPassword: Input.Password,
     },
     setup() {
@@ -68,6 +78,7 @@
       const formData = reactive({
         account: 'lyzh',
         password: '123456',
+        code: '',
       });
 
       const { validForm } = useFormValid(formRef);
@@ -115,3 +126,20 @@
     },
   });
 </script>
+
+<style lang="less" scoped>
+  .login-wrapper {
+    width: 364px;
+    height: auto;
+    padding: 32px 30px 13px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+
+    h1 {
+      margin-bottom: 5.556vh;
+      font-size: 2.963vh;
+      line-height: 3.519vh;
+      text-align: center;
+    }
+  }
+</style>

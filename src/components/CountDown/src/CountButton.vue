@@ -1,10 +1,6 @@
 <template>
   <Button v-bind="$attrs" :disabled="isStart" @click="handleStart" :loading="loading">
-    {{
-      !isStart
-        ? t('component.countdown.normalText')
-        : t('component.countdown.sendText', [currentCount])
-    }}
+    {{ !isStart ? t('component.countdown.normalText') : t('component.countdown.sendText', [currentCount]) }}
   </Button>
 </template>
 <script lang="ts">

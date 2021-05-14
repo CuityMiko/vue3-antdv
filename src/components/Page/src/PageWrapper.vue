@@ -81,21 +81,19 @@
         return Object.keys(omit(slots, 'default', 'leftFooter', 'rightFooter', 'headerContent'));
       });
 
-      const getContentStyle = computed(
-        (): CSSProperties => {
-          const { contentFullHeight, contentStyle, fixedHeight } = props;
-          if (!contentFullHeight) {
-            return { ...contentStyle };
-          }
-          const height = `${unref(pageHeight)}px`;
-          return {
-            ...contentStyle,
-            minHeight: height,
-            ...(fixedHeight ? { height } : {}),
-            paddingBottom: `${unref(footerHeight)}px`,
-          };
+      const getContentStyle = computed((): CSSProperties => {
+        const { contentFullHeight, contentStyle, fixedHeight } = props;
+        if (!contentFullHeight) {
+          return { ...contentStyle };
         }
-      );
+        const height = `${unref(pageHeight)}px`;
+        return {
+          ...contentStyle,
+          minHeight: height,
+          ...(fixedHeight ? { height } : {}),
+          paddingBottom: `${unref(footerHeight)}px`,
+        };
+      });
 
       const getContentClass = computed(() => {
         const { contentBackground, contentClass } = props;

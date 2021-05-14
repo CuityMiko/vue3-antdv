@@ -1,10 +1,6 @@
 <template>
   <BasicMenuItem v-if="!menuHasChildren(item) && getShowMenu" v-bind="$props" />
-  <SubMenu
-    v-if="menuHasChildren(item) && getShowMenu"
-    :class="[theme]"
-    popupClassName="app-top-menu-popup"
-  >
+  <SubMenu v-if="menuHasChildren(item) && getShowMenu" :class="[theme]" popupClassName="app-top-menu-popup">
     <template #title>
       <MenuItemContent v-bind="$props" :item="item" />
     </template>

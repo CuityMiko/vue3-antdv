@@ -11,10 +11,7 @@ import { useBreakpoint } from '/@/hooks/event/useBreakpoint';
 import echarts from '/@/utils/lib/echarts';
 import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 
-export function useECharts(
-  elRef: Ref<HTMLDivElement>,
-  theme: 'light' | 'dark' | 'default' = 'light'
-) {
+export function useECharts(elRef: Ref<HTMLDivElement>, theme: 'light' | 'dark' | 'default' = 'light') {
   const { getDarkMode } = useRootSetting();
   let chartInstance: echarts.ECharts | null = null;
   let resizeFn: Fn = resize;
@@ -23,17 +20,15 @@ export function useECharts(
 
   resizeFn = useDebounceFn(resize, 200);
 
-  const getOptions = computed(
-    (): EChartsOption => {
-      if (getDarkMode.value !== 'dark') {
-        return cacheOptions.value;
-      }
-      return {
-        backgroundColor: 'transparent',
-        ...cacheOptions.value,
-      };
+  const getOptions = computed((): EChartsOption => {
+    if (getDarkMode.value !== 'dark') {
+      return cacheOptions.value;
     }
-  );
+    return {
+      backgroundColor: 'transparent',
+      ...cacheOptions.value,
+    };
+  });
 
   function initCharts(t = theme) {
     const el = unref(elRef);

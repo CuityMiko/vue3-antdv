@@ -2,16 +2,7 @@
   <div ref="wrapRef"></div>
 </template>
 <script lang="ts">
-  import {
-    defineComponent,
-    ref,
-    onMounted,
-    unref,
-    onUnmounted,
-    nextTick,
-    computed,
-    watch,
-  } from 'vue';
+  import { defineComponent, ref, onMounted, unref, onUnmounted, nextTick, computed, watch } from 'vue';
   import Vditor from 'vditor';
   import 'vditor/dist/index.css';
 

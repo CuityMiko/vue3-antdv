@@ -21,7 +21,7 @@ export interface TabItem {
 export const tabListData: TabItem[] = [
   {
     key: '1',
-    name: '通知',
+    name: '系统通知',
     list: [
       {
         id: '000000001',
@@ -60,40 +60,7 @@ export const tabListData: TabItem[] = [
   },
   {
     key: '2',
-    name: '消息',
-    list: [
-      {
-        id: '000000006',
-        avatar: 'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-        title: '曲丽丽 评论了你',
-        description: '描述信息描述信息描述信息',
-        datetime: '2017-08-07',
-        type: '2',
-        clickClose: true,
-      },
-      {
-        id: '000000007',
-        avatar: 'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-        title: '朱偏右 回复了你',
-        description: '这种模板用于提醒谁与你发生了互动',
-        datetime: '2017-08-07',
-        type: '2',
-        clickClose: true,
-      },
-      {
-        id: '000000008',
-        avatar: 'https://gw.alipayobjects.com/zos/rmsportal/fcHMVNCjPOsbUGdEduuv.jpeg',
-        title: '标题',
-        description: '这种模板用于提醒谁与你发生了互动',
-        datetime: '2017-08-07',
-        type: '2',
-        clickClose: true,
-      },
-    ],
-  },
-  {
-    key: '3',
-    name: '待办',
+    name: '待办任务',
     list: [
       {
         id: '000000009',

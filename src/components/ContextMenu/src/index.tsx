@@ -15,11 +15,7 @@ const prefixCls = 'context-menu';
 const ItemContent: FunctionalComponent<ItemContentProps> = (props) => {
   const { item } = props;
   return (
-    <span
-      style="display: inline-block; width: 100%; "
-      class="px-4"
-      onClick={props.handler.bind(null, item)}
-    >
+    <span style="display: inline-block; width: 100%; " class="px-4" onClick={props.handler.bind(null, item)}>
       {props.showIcon && item.icon && <Icon class="mr-2" icon={item.icon} />}
       <span>{item.label}</span>
     </span>
@@ -33,24 +29,22 @@ export default defineComponent({
     const wrapRef = ref<ElRef>(null);
     const showRef = ref(false);
 
-    const getStyle = computed(
-      (): CSSProperties => {
-        const { axis, items, styles, width } = props;
-        const { x, y } = axis || { x: 0, y: 0 };
-        const menuHeight = (items || []).length * 40;
-        const menuWidth = width;
-        const body = document.body;
+    const getStyle = computed((): CSSProperties => {
+      const { axis, items, styles, width } = props;
+      const { x, y } = axis || { x: 0, y: 0 };
+      const menuHeight = (items || []).length * 40;
+      const menuWidth = width;
+      const body = document.body;
 
-        const left = body.clientWidth < x + menuWidth ? x - menuWidth : x;
-        const top = body.clientHeight < y + menuHeight ? y - menuHeight : y;
-        return {
-          ...styles,
-          width: `${width}px`,
-          left: `${left + 1}px`,
-          top: `${top + 1}px`,
-        };
-      }
-    );
+      const left = body.clientWidth < x + menuWidth ? x - menuWidth : x;
+      const top = body.clientHeight < y + menuHeight ? y - menuHeight : y;
+      return {
+        ...styles,
+        width: `${width}px`,
+        left: `${left + 1}px`,
+        top: `${top + 1}px`,
+      };
+    });
 
     onMounted(() => {
       nextTick(() => (showRef.value = true));
@@ -91,9 +85,7 @@ export default defineComponent({
         return (
           <Menu.SubMenu key={label} disabled={disabled} popupClassName={`${prefixCls}__popup`}>
             {{
-              title: () => (
-                <ItemContent showIcon={props.showIcon} item={item} handler={handleAction} />
-              ),
+              title: () => <ItemContent showIcon={props.showIcon} item={item} handler={handleAction} />,
               default: () => renderMenuItem(children),
             }}
           </Menu.SubMenu>
@@ -104,13 +96,7 @@ export default defineComponent({
       const { items } = props;
       if (!unref(showRef)) return null;
       return (
-        <Menu
-          inlineIndent={12}
-          mode="vertical"
-          class={prefixCls}
-          ref={wrapRef}
-          style={unref(getStyle)}
-        >
+        <Menu inlineIndent={12} mode="vertical" class={prefixCls} ref={wrapRef} style={unref(getStyle)}>
           {renderMenuItem(items)}
         </Menu>
       );

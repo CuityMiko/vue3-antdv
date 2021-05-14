@@ -131,16 +131,14 @@
         return option?.label ?? value;
       });
 
-      const getWrapperStyle = computed(
-        (): CSSProperties => {
-          if (unref(getIsCheckComp) || unref(getRowEditable)) {
-            return {};
-          }
-          return {
-            width: 'calc(100% - 48px)',
-          };
+      const getWrapperStyle = computed((): CSSProperties => {
+        if (unref(getIsCheckComp) || unref(getRowEditable)) {
+          return {};
         }
-      );
+        return {
+          width: 'calc(100% - 48px)',
+        };
+      });
 
       const getRowEditable = computed(() => {
         const { editable } = props.record || {};
@@ -267,9 +265,7 @@
       function initCbs(cbs: 'submitCbs' | 'validCbs' | 'cancelCbs', handle: Fn) {
         if (props.record) {
           /* eslint-disable  */
-          isArray(props.record[cbs])
-            ? props.record[cbs]?.push(handle)
-            : (props.record[cbs] = [handle]);
+          isArray(props.record[cbs]) ? props.record[cbs]?.push(handle) : (props.record[cbs] = [handle]);
         }
       }
 

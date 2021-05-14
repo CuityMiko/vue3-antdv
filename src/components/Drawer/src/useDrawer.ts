@@ -6,16 +6,7 @@ import type {
   UseDrawerInnerReturnType,
 } from './types';
 
-import {
-  ref,
-  getCurrentInstance,
-  unref,
-  reactive,
-  watchEffect,
-  nextTick,
-  toRaw,
-  computed,
-} from 'vue';
+import { ref, getCurrentInstance, unref, reactive, watchEffect, nextTick, toRaw, computed } from 'vue';
 
 import { isProdMode } from '/@/utils/env';
 import { isFunction } from '/@/utils/is';

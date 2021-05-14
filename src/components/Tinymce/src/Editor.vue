@@ -46,16 +46,7 @@
   import 'tinymce/plugins/visualchars';
   import 'tinymce/plugins/wordcount';
 
-  import {
-    defineComponent,
-    computed,
-    nextTick,
-    ref,
-    unref,
-    watch,
-    onUnmounted,
-    onDeactivated,
-  } from 'vue';
+  import { defineComponent, computed, nextTick, ref, unref, watch, onUnmounted, onDeactivated } from 'vue';
 
   import ImgUpload from './ImgUpload.vue';
 

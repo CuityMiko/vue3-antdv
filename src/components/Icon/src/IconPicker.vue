@@ -7,19 +7,10 @@
     v-model:value="currentSelect"
   >
     <template #addonAfter>
-      <Popover
-        placement="bottomLeft"
-        trigger="click"
-        v-model="visible"
-        :overlayClassName="`${prefixCls}-popover`"
-      >
+      <Popover placement="bottomLeft" trigger="click" v-model="visible" :overlayClassName="`${prefixCls}-popover`">
         <template #title>
           <div class="flex justify-between">
-            <a-input
-              :placeholder="t('component.icon.search')"
-              @change="handleSearchChange"
-              allowClear
-            />
+            <a-input :placeholder="t('component.icon.search')" @change="handleSearchChange" allowClear />
           </div>
         </template>
 
@@ -31,7 +22,18 @@
                   v-for="icon in getPaginationList"
                   :key="icon"
                   :class="currentSelect === icon ? 'border border-primary' : ''"
-                  class="p-2 w-1/8 cursor-pointer mr-1 mt-1 flex justify-center items-center border border-solid hover:border-primary"
+                  class="
+                    p-2
+                    w-1/8
+                    cursor-pointer
+                    mr-1
+                    mt-1
+                    flex
+                    justify-center
+                    items-center
+                    border border-solid
+                    hover:border-primary
+                  "
                   @click="handleClick(icon)"
                   :title="icon"
                 >
@@ -108,9 +110,7 @@
       width: propTypes.string.def('100%'),
       pageSize: propTypes.number.def(140),
       copy: propTypes.bool.def(false),
-      mode: propTypes
-        .oneOf<('svg' | 'iconify')[]>(['svg', 'iconify'])
-        .def('iconify'),
+      mode: propTypes.oneOf<('svg' | 'iconify')[]>(['svg', 'iconify']).def('iconify'),
     },
     emits: ['change'],
     setup(props, { emit }) {
@@ -128,10 +128,7 @@
       const { clipboardRef, isSuccessRef } = useCopyToClipboard(props.value);
       const { createMessage } = useMessage();
 
-      const { getPaginationList, getTotal, setCurrentPage } = usePagination(
-        currentList,
-        props.pageSize
-      );
+      const { getPaginationList, getTotal, setCurrentPage } = usePagination(currentList, props.pageSize);
 
       watchEffect(() => {
         currentSelect.value = props.value;

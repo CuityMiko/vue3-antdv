@@ -1,10 +1,5 @@
 <template>
-  <Select
-    @dropdownVisibleChange="handleFetch"
-    v-bind="attrs"
-    :options="getOptions"
-    v-model:value="state"
-  >
+  <Select @dropdownVisibleChange="handleFetch" v-bind="attrs" :options="getOptions" v-model:value="state">
     <template #[item]="data" v-for="item in Object.keys($slots)">
       <slot :name="item" v-bind="data"></slot>
     </template>
@@ -41,12 +36,7 @@
     },
     inheritAttrs: false,
     props: {
-      value: propTypes.oneOfType([
-        propTypes.object,
-        propTypes.number,
-        propTypes.string,
-        propTypes.array,
-      ]),
+      value: propTypes.oneOfType([propTypes.object, propTypes.number, propTypes.string, propTypes.array]),
       numberToString: propTypes.bool,
       api: {
         type: Function as PropType<(arg?: Recordable) => Promise<OptionsItem[]>>,

@@ -19,10 +19,7 @@
       </template>
 
       <FormAction v-bind="{ ...getProps, ...advanceState }" @toggle-advanced="handleToggleAdvanced">
-        <template
-          #[item]="data"
-          v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']"
-        >
+        <template #[item]="data" v-for="item in ['resetBefore', 'submitBefore', 'advanceBefore', 'advanceAfter']">
           <slot :name="item" v-bind="data"></slot>
         </template>
       </FormAction>
@@ -35,17 +32,7 @@
   import type { AdvanceState } from './types/hooks';
   import type { CSSProperties, Ref } from 'vue';
 
-  import {
-    defineComponent,
-    reactive,
-    ref,
-    computed,
-    unref,
-    onMounted,
-    watch,
-    toRefs,
-    nextTick,
-  } from 'vue';
+  import { defineComponent, reactive, ref, computed, unref, onMounted, watch, toRefs, nextTick } from 'vue';
   import { Form, Row } from 'ant-design-vue';
   import FormItem from './components/FormItem.vue';
   import FormAction from './components/FormAction.vue';
@@ -91,11 +78,9 @@
       const { prefixCls } = useDesign('basic-form');
 
       // Get the basic configuration of the form
-      const getProps = computed(
-        (): FormProps => {
-          return { ...props, ...unref(propsRef) } as FormProps;
-        }
-      );
+      const getProps = computed((): FormProps => {
+        return { ...props, ...unref(propsRef) } as FormProps;
+      });
 
       const getFormClass = computed(() => {
         return [
@@ -107,12 +92,10 @@
       });
 
       // Get uniform row style
-      const getRowWrapStyle = computed(
-        (): CSSProperties => {
-          const { baseRowStyle = {} } = unref(getProps);
-          return baseRowStyle;
-        }
-      );
+      const getRowWrapStyle = computed((): CSSProperties => {
+        const { baseRowStyle = {} } = unref(getProps);
+        return baseRowStyle;
+      });
 
       const getSchema = computed((): FormSchema[] => {
         const schemas: FormSchema[] = unref(schemaRef) || (unref(getProps).schemas as any);
@@ -143,9 +126,7 @@
         defaultValueRef,
       });
 
-      const { transformDateFunc, fieldMapToTime, autoFocusFirstItem } = toRefs(
-        unref(getProps)
-      ) as any;
+      const { transformDateFunc, fieldMapToTime, autoFocusFirstItem } = toRefs(unref(getProps)) as any;
 
       const { handleFormValues, initDefault } = useFormValues({
         transformDateFuncRef: transformDateFunc,

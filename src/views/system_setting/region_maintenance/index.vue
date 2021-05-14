@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">地区维护</div>
+  <div class="p-5">地区维护</div>
 </template>
 <script>
   export default {

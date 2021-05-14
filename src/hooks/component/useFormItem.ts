@@ -3,11 +3,7 @@ import { reactive, readonly, computed, getCurrentInstance, watchEffect } from 'v
 
 import { isEqual } from 'lodash-es';
 
-export function useRuleFormItem<T extends Recordable>(
-  props: T,
-  key: keyof T = 'value',
-  changeEvent = 'change'
-) {
+export function useRuleFormItem<T extends Recordable>(props: T, key: keyof T = 'value', changeEvent = 'change') {
   const instance = getCurrentInstance();
   const emit = instance?.emit;
 

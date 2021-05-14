@@ -154,9 +154,7 @@ export function useFormEvents({
     const hasField = updateData.every((item) => Reflect.has(item, 'field') && item.field);
 
     if (!hasField) {
-      error(
-        'All children of the form Schema array that need to be updated must contain the `field` field'
-      );
+      error('All children of the form Schema array that need to be updated must contain the `field` field');
       return;
     }
     schemaRef.value = updateData as FormSchema[];
@@ -174,9 +172,7 @@ export function useFormEvents({
     const hasField = updateData.every((item) => Reflect.has(item, 'field') && item.field);
 
     if (!hasField) {
-      error(
-        'All children of the form Schema array that need to be updated must contain the `field` field'
-      );
+      error('All children of the form Schema array that need to be updated must contain the `field` field');
       return;
     }
     const schema: FormSchema[] = [];

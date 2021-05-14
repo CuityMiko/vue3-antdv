@@ -1,12 +1,5 @@
 <template>
-  <transition-group
-    class="h-full w-full"
-    v-bind="$attrs"
-    ref="elRef"
-    :name="transitionName"
-    :tag="tag"
-    mode="out-in"
-  >
+  <transition-group class="h-full w-full" v-bind="$attrs" ref="elRef" :name="transitionName" :tag="tag" mode="out-in">
     <div key="component" v-if="isInit">
       <slot :loading="loading"></slot>
     </div>
@@ -42,9 +35,7 @@
 
       // The viewport where the component is located. If the component is scrolling in the page container, the viewport is the container
       viewport: {
-        type: (typeof window !== 'undefined'
-          ? window.HTMLElement
-          : Object) as PropType<HTMLElement>,
+        type: (typeof window !== 'undefined' ? window.HTMLElement : Object) as PropType<HTMLElement>,
         default: () => null,
       },
 

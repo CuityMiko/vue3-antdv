@@ -9,12 +9,7 @@ interface UseAutoFocusContext {
   isInitedDefault: Ref<boolean>;
   formElRef: Ref<FormActionType>;
 }
-export async function useAutoFocus({
-  getSchema,
-  autoFocusFirstItem,
-  formElRef,
-  isInitedDefault,
-}: UseAutoFocusContext) {
+export async function useAutoFocus({ getSchema, autoFocusFirstItem, formElRef, isInitedDefault }: UseAutoFocusContext) {
   watchEffect(async () => {
     if (unref(isInitedDefault) || !unref(autoFocusFirstItem)) return;
     await nextTick();

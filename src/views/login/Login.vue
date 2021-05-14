@@ -1,22 +1,19 @@
 <template>
   <div :class="prefixCls" class="relative w-full h-full px-4">
-    <span class="-enter-x xl:hidden">
-      <AppLogo :alwaysShowTitle="true" />
-    </span>
-
-    <div class="container relative h-full py-2 mx-auto sm:px-10">
-      <div class="flex h-full">
-        <div class="hidden xl:flex xl:flex-col xl:w-6/12 min-h-full mr-4 pl-4">
-          <AppLogo class="-enter-x" />
-          <div class="my-auto">
-            <img :alt="title" src="../../assets/svg/login-box-bg.svg" class="-enter-x" style="margin-left: -10vh" />
+    <div class="container relative h-full mx-auto sm:px-10">
+      <div class="flex h-full" style="position: relative">
+        <div :class="`${prefixCls}-center`" class="h-full xl:h-auto py-5 xl:py-0 xl:my-0 w-full xl:w-6/12">
+          <!-- <AppLogo :alwaysShowTitle="true" /> -->
+          <div class="logo-sec mb-8">
+            <div class="cen-logo">
+              <img src="../../assets/images/logo-2x.png" />
+            </div>
+            <p>{{ tit1 }}</p>
+            <p>{{ tit2 }}</p>
           </div>
-        </div>
-        <div class="h-full xl:h-auto flex py-5 xl:py-0 xl:my-0 w-full xl:w-6/12">
           <div
             :class="`${prefixCls}-form`"
             class="
-              my-auto
               mx-auto
               xl:ml-20
               xl:bg-transparent
@@ -33,11 +30,15 @@
               xl:w-auto
               enter-x
               relative
+              flex
             "
           >
             <LoginForm />
             <ForgetPasswordForm />
           </div>
+          <div class="copyright mt-14"
+            >技术支持：浙江联运知慧科技有限公司 地址：浙江省杭州市余杭经济开发区五洲路98号</div
+          >
         </div>
       </div>
     </div>
@@ -46,7 +47,6 @@
 <script lang="ts">
   import { defineComponent, computed } from 'vue';
 
-  import { AppLogo } from '/@/components/Application';
   import LoginForm from './LoginForm.vue';
   import ForgetPasswordForm from './ForgetPasswordForm.vue';
 
@@ -58,7 +58,6 @@
   export default defineComponent({
     name: 'Login',
     components: {
-      AppLogo,
       LoginForm,
       ForgetPasswordForm,
     },
@@ -72,6 +71,8 @@
         t,
         prefixCls,
         title: computed(() => globSetting?.title ?? ''),
+        tit1: computed(() => globSetting?.title.slice(0, 7) ?? ''),
+        tit2: computed(() => globSetting?.title.slice(7) ?? ''),
         showLocale: localeStore.getShowPicker,
       };
     },
@@ -111,36 +112,65 @@
   }
 
   .@{prefix-cls} {
+    padding-top: 10.185vh;
     overflow: hidden;
+    background: url('/@/assets/images/login_bg.png');
     @media (max-width: @screen-xl) {
-      background-color: #293146;
+      // background-color: #293146;
 
       .@{prefix-cls}-form {
         background-color: #fff;
       }
     }
 
-    &::before {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .logo-sec {
       width: 100%;
-      height: 100%;
-      margin-left: -48%;
-      background-image: url(/@/assets/svg/login-bg.svg);
-      background-position: 100%;
-      background-repeat: no-repeat;
-      background-size: auto 100%;
-      content: '';
-      @media (max-width: @screen-xl) {
-        display: none;
+      height: auto;
+
+      .cen-logo {
+        width: 100%;
+        height: 12.963vh;
+        margin-bottom: 1.852vh;
+        text-align: center;
+
+        img {
+          display: inline-block;
+          width: 12.963vh;
+        }
+      }
+
+      p {
+        width: 100%;
+        margin-bottom: 0;
+        font-size: 4.629vh;
+        font-weight: 600;
+        line-height: 6.111vh;
+        letter-spacing: 0.2em;
+        color: #fff;
+        text-align: center;
       }
     }
 
-    .@{logo-prefix-cls} {
+    .@{prefix-cls}-form {
+      justify-content: center;
+    }
+
+    &-center {
       position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .copyright {
+      width: 100%;
+      font-size: 16px;
+      line-height: 22px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .@{logo-prefix-cls} {
       top: 12px;
-      height: 30px;
 
       &__title {
         font-size: 16px;
@@ -154,17 +184,11 @@
 
     .container {
       .@{logo-prefix-cls} {
-        display: flex;
-        width: 60%;
-        height: 80px;
+        width: 100%;
+        height: auto;
 
         &__title {
-          font-size: 24px;
           color: #fff;
-        }
-
-        img {
-          width: 48px;
         }
       }
     }
@@ -182,23 +206,7 @@
     }
 
     input:not([type='checkbox']) {
-      min-width: 360px;
-
-      @media (max-width: @screen-xl) {
-        min-width: 320px;
-      }
-
-      @media (max-width: @screen-lg) {
-        min-width: 260px;
-      }
-
-      @media (max-width: @screen-md) {
-        min-width: 240px;
-      }
-
-      @media (max-width: @screen-sm) {
-        min-width: 160px;
-      }
+      width: 100%;
     }
 
     .@{countdown-prefix-cls} input {

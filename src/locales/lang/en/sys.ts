@@ -6,8 +6,7 @@ export default {
     timeoutMessage: 'Login timed out, please log in again!',
     apiTimeoutMessage: 'The interface request timed out, please refresh the page and try again!',
     networkException: 'network anomaly',
-    networkExceptionMsg:
-      'Please check if your network connection is normal! The network is abnormal',
+    networkExceptionMsg: 'Please check if your network connection is normal! The network is abnormal',
 
     errMsg401: 'The user does not have permission (token, user name, password error)!',
     errMsg403: 'The user is authorized, but access is forbidden!',
@@ -52,8 +51,7 @@ export default {
     subTitle500: 'Sorry, the server is reporting an error.',
     noDataTitle: 'No data on the current page.',
     networkErrorTitle: 'Network Error',
-    networkErrorSubTitle:
-      'Sorry，Your network connection has been disconnected, please check your network!',
+    networkErrorSubTitle: 'Sorry，Your network connection has been disconnected, please check your network!',
   },
   lock: {
     unlock: 'Click to unlock',

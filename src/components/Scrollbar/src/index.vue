@@ -21,16 +21,7 @@
   import componentSetting from '/@/settings/componentSetting';
   const { scrollbar } = componentSetting;
   import { toObject } from './util';
-  import {
-    defineComponent,
-    ref,
-    onMounted,
-    onBeforeUnmount,
-    nextTick,
-    provide,
-    computed,
-    unref,
-  } from 'vue';
+  import { defineComponent, ref, onMounted, onBeforeUnmount, nextTick, provide, computed, unref } from 'vue';
   import Bar from './bar';
 
   export default defineComponent({

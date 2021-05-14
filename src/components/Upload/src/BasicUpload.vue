@@ -27,11 +27,7 @@
       @change="handleChange"
     />
 
-    <UploadPreviewModal
-      :value="fileListRef"
-      @register="registerPreviewModal"
-      @list-change="handlePreviewChange"
-    />
+    <UploadPreviewModal :value="fileListRef" @register="registerPreviewModal" @list-change="handlePreviewChange" />
   </div>
 </template>
 <script lang="ts">

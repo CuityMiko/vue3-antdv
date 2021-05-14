@@ -108,7 +108,7 @@ export function useColumns(
   propsRef: ComputedRef<BasicTableProps>,
   getPaginationRef: ComputedRef<boolean | PaginationProps>
 ) {
-  const columnsRef = (ref(unref(propsRef).columns) as unknown) as Ref<BasicColumn[]>;
+  const columnsRef = ref(unref(propsRef).columns) as unknown as Ref<BasicColumn[]>;
   let cacheColumns = unref(propsRef).columns;
 
   const getColumnsRef = computed(() => {
@@ -125,10 +125,7 @@ export function useColumns(
     cloneColumns.forEach((item) => {
       const { customRender, slots } = item;
 
-      handleItem(
-        item,
-        Reflect.has(item, 'ellipsis') ? !!item.ellipsis : !!ellipsis && !customRender && !slots
-      );
+      handleItem(item, Reflect.has(item, 'ellipsis') ? !!item.ellipsis : !!ellipsis && !customRender && !slots);
     });
     return cloneColumns;
   });
@@ -218,10 +215,7 @@ export function useColumns(
       // Sort according to another array
       if (!isEqual(cacheKeys, columns)) {
         newColumns.sort((prev, next) => {
-          return (
-            cacheKeys.indexOf(prev.dataIndex as string) -
-            cacheKeys.indexOf(next.dataIndex as string)
-          );
+          return cacheKeys.indexOf(prev.dataIndex as string) - cacheKeys.indexOf(next.dataIndex as string);
         });
       }
       columnsRef.value = newColumns;

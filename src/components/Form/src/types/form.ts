@@ -176,11 +176,7 @@ export interface FormSchema {
   // Rendering col content requires outer wrapper form-item
   renderColContent?: (renderCallbackParams: RenderCallbackParams) => VNode | VNode[] | string;
 
-  renderComponentContent?:
-    | ((renderCallbackParams: RenderCallbackParams) => any)
-    | VNode
-    | VNode[]
-    | string;
+  renderComponentContent?: ((renderCallbackParams: RenderCallbackParams) => any) | VNode | VNode[] | string;
 
   // Custom slot, in from-item
   slot?: string;

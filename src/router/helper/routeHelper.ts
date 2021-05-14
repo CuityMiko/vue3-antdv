@@ -28,10 +28,7 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
   });
 }
 
-function dynamicImport(
-  dynamicViewsModules: Record<string, () => Promise<Recordable>>,
-  component: string
-) {
+function dynamicImport(dynamicViewsModules: Record<string, () => Promise<Recordable>>, component: string) {
   const keys = Object.keys(dynamicViewsModules);
   const matchKeys = keys.filter((key) => {
     let k = key.replace('../../views', '');
@@ -73,7 +70,7 @@ export function transformObjToRoute<T = AppRouteModule>(routeList: AppRouteModul
     }
     route.children && asyncImportRoute(route.children);
   });
-  return (routeList as unknown) as T[];
+  return routeList as unknown as T[];
 }
 
 /**
@@ -95,7 +92,7 @@ export function flatMultiLevelRoutes(routeModules: AppRouteModule[]) {
 function promoteRouteLevel(routeModule: AppRouteModule) {
   // Use vue-router to splice menus
   let router: Router | null = createRouter({
-    routes: [(routeModule as unknown) as RouteRecordNormalized],
+    routes: [routeModule as unknown as RouteRecordNormalized],
     history: createWebHashHistory(),
   });
 
@@ -107,11 +104,7 @@ function promoteRouteLevel(routeModule: AppRouteModule) {
 }
 
 // Add all sub-routes to the secondary route
-function addToChildren(
-  routes: RouteRecordNormalized[],
-  children: AppRouteRecordRaw[],
-  routeModule: AppRouteModule
-) {
+function addToChildren(routes: RouteRecordNormalized[], children: AppRouteRecordRaw[], routeModule: AppRouteModule) {
   for (let index = 0; index < children.length; index++) {
     const child = children[index];
     const route = routes.find((item) => item.name === child.name);
@@ -120,7 +113,7 @@ function addToChildren(
     }
     routeModule.children = routeModule.children || [];
     if (!routeModule.children.find((item) => item.name === route.name)) {
-      routeModule.children?.push((route as unknown) as AppRouteModule);
+      routeModule.children?.push(route as unknown as AppRouteModule);
     }
     if (child.children?.length) {
       addToChildren(routes, child.children, routeModule);

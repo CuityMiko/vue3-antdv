@@ -3,11 +3,7 @@ import type { BasicTableProps, TableRowSelection } from '../types/table';
 import { computed, ref, unref, ComputedRef, Ref, toRaw } from 'vue';
 import { ROW_KEY } from '../const';
 
-export function useRowSelection(
-  propsRef: ComputedRef<BasicTableProps>,
-  tableData: Ref<Recordable[]>,
-  emit: EmitType
-) {
+export function useRowSelection(propsRef: ComputedRef<BasicTableProps>, tableData: Ref<Recordable[]>, emit: EmitType) {
   const selectedRowKeysRef = ref<string[]>([]);
   const selectedRowRef = ref<Recordable[]>([]);
 
@@ -44,9 +40,7 @@ export function useRowSelection(
   function setSelectedRowKeys(rowKeys: string[]) {
     selectedRowKeysRef.value = rowKeys;
 
-    const rows = toRaw(unref(tableData)).filter((item) =>
-      rowKeys.includes(item[unref(getRowKey) as string])
-    );
+    const rows = toRaw(unref(tableData)).filter((item) => rowKeys.includes(item[unref(getRowKey) as string]));
     selectedRowRef.value = rows;
   }
 

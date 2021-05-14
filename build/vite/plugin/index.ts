@@ -19,13 +19,8 @@ import { configSvgIconsPlugin } from './svgSprite';
 import { configHmrPlugin } from './hmr';
 
 export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
-  const {
-    VITE_USE_IMAGEMIN,
-    VITE_USE_MOCK,
-    VITE_LEGACY,
-    VITE_BUILD_COMPRESS,
-    VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE,
-  } = viteEnv;
+  const { VITE_USE_IMAGEMIN, VITE_USE_MOCK, VITE_LEGACY, VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE } =
+    viteEnv;
 
   const vitePlugins: (Plugin | Plugin[])[] = [
     // have to
@@ -70,9 +65,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     VITE_USE_IMAGEMIN && vitePlugins.push(configImageminPlugin());
 
     // rollup-plugin-gzip
-    vitePlugins.push(
-      configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE)
-    );
+    vitePlugins.push(configCompressPlugin(VITE_BUILD_COMPRESS, VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE));
 
     // vite-plugin-pwa
     vitePlugins.push(configPwaConfig(viteEnv));

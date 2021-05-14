@@ -11,11 +11,7 @@
     >
       <template #title>
         <div :class="`${prefixCls}__popover-title`">
-          <Checkbox
-            :indeterminate="indeterminate"
-            v-model:checked="checkAll"
-            @change="onCheckAllChange"
-          >
+          <Checkbox :indeterminate="indeterminate" v-model:checked="checkAll" @change="onCheckAllChange">
             {{ t('component.table.settingColumnShow') }}
           </Checkbox>
 
@@ -23,11 +19,7 @@
             {{ t('component.table.settingIndexColumnShow') }}
           </Checkbox>
 
-          <Checkbox
-            v-model:checked="checkSelect"
-            @change="handleSelectCheckChange"
-            :disabled="!defaultRowSelection"
-          >
+          <Checkbox v-model:checked="checkSelect" @change="handleSelectCheckChange" :disabled="!defaultRowSelection">
             {{ t('component.table.settingSelectColumnShow') }}
           </Checkbox>
 
@@ -90,16 +82,7 @@
   </Tooltip>
 </template>
 <script lang="ts">
-  import {
-    defineComponent,
-    ref,
-    reactive,
-    toRefs,
-    watchEffect,
-    nextTick,
-    unref,
-    computed,
-  } from 'vue';
+  import { defineComponent, ref, reactive, toRefs, watchEffect, nextTick, unref, computed } from 'vue';
   import { Tooltip, Popover, Checkbox, Divider } from 'ant-design-vue';
   import { SettingOutlined, DragOutlined } from '@ant-design/icons-vue';
   import { Icon } from '/@/components/Icon';
