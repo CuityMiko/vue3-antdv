@@ -2,7 +2,7 @@
   <div :class="prefixCls" class="relative w-full h-full px-4">
     <div class="container relative h-full mx-auto sm:px-10">
       <div class="flex h-full" style="position: relative">
-        <div :class="`${prefixCls}-center`" class="h-full xl:h-auto py-5 xl:py-0 xl:my-0 w-full xl:w-6/12">
+        <div :class="`${prefixCls}-center`" class="h-full xl:h-auto py-5 xl:py-0 xl:my-0 w-full xl:w-7/12">
           <!-- <AppLogo :alwaysShowTitle="true" /> -->
           <div class="logo-sec mb-8">
             <div class="cen-logo">
@@ -11,32 +11,11 @@
             <p>{{ tit1 }}</p>
             <p>{{ tit2 }}</p>
           </div>
-          <div
-            :class="`${prefixCls}-form`"
-            class="
-              mx-auto
-              xl:ml-20
-              xl:bg-transparent
-              px-5
-              py-8
-              sm:px-8
-              xl:p-4
-              rounded-md
-              shadow-md
-              xl:shadow-none
-              w-full
-              sm:w-3/4
-              lg:w-2/4
-              xl:w-auto
-              enter-x
-              relative
-              flex
-            "
-          >
+          <div :class="`${prefixCls}-form flex justify-center`" class="">
             <LoginForm />
             <ForgetPasswordForm />
           </div>
-          <div class="copyright mt-14"
+          <div class="copyright mt-4"
             >技术支持：浙江联运知慧科技有限公司 地址：浙江省杭州市余杭经济开发区五洲路98号</div
           >
         </div>
@@ -151,9 +130,9 @@
       }
     }
 
-    .@{prefix-cls}-form {
-      justify-content: center;
-    }
+    // .@{prefix-cls}-form {
+    //   justify-content: center;
+    // }
 
     &-center {
       position: absolute;
