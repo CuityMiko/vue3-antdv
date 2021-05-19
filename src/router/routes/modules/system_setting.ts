@@ -36,6 +36,14 @@ const dashboard: AppRouteModule = {
       },
     },
     {
+      path: 'role_manage_detail',
+      name: 'RoleManageDetail',
+      component: () => import('/@/views/system_setting/role_manage/detail.vue'),
+      meta: {
+        title: '角色详情',
+      },
+    },
+    {
       path: 'account_manage',
       name: 'AccountManage',
       component: () => import('/@/views/system_setting/account_manage/index.vue'),
