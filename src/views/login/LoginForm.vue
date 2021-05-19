@@ -20,7 +20,7 @@
         </ACol>
       </ARow>
 
-      <FormItem class="enter-x">
+      <FormItem class="enter-x" style="margin-bottom: 8px">
         <Button type="primary" size="large" block @click="handleLogin" :loading="loading"> 登 录 </Button>
       </FormItem>
 

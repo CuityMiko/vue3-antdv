@@ -1,92 +1,154 @@
 <template>
-  <div class="wrapper p-4">
-    <div class="filter-sec">
-      <Form>
-        <ARow>
-          <ACol :span="8">
-            <FormItem label="地区">
-              <TreeSelect
-                v-modal="distId"
-                show-search
-                style="width: 100%"
-                placeholder="请选择地区"
-                :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
-                allow-clear
-                tree-default-expand-all
-                :tree-data="treeData"
-              />
-            </FormItem>
-          </ACol>
-          <ACol :span="8" />
-          <ACol :span="8" />
-        </ARow>
-      </Form>
+  <PageWrapper dense contentFullHeight fixedHeight>
+    <BasicTable @register="registerTable">
+      <template #garbageType="{ text }">
+        <span v-if="text === '1'">易腐垃圾</span>
+        <span v-if="text === '2'">可回收垃圾</span>
+        <span v-if="text === '3'">其他垃圾</span>
+      </template>
+      <template #quality="{ text }">
+        <div class="quality-sec">
+          <span class="quality-symbol" :class="{ good: text === '1', normal: text === '2', bad: text === '3' }"></span>
+          <span v-if="text === '1'">优秀</span>
+          <span v-if="text === '2'">一般</span>
+          <span v-if="text === '3'">差</span>
+        </div>
+      </template>
+      <template #checkImg="{ text: imgPath }">
+        <a-button class="img-btn" @click="handleImage(imgPath)">查看</a-button>
+      </template>
+    </BasicTable>
+    <div class="display-wrapper">
+      <ImagePreview :imageList="imgList" ref="Image" />
     </div>
-  </div>
+  </PageWrapper>
 </template>
-<script>
-  import { Row, Col, Form, TreeSelect } from 'ant-design-vue';
+<script lang="ts">
+  import { defineComponent, ref, nextTick } from 'vue';
 
-  export default {
+  import { BasicTable, useTable } from '/@/components/Table';
+  import { PageWrapper } from '/@/components/Page';
+  import { ImagePreview } from '/@/components/Preview';
+  import { columns, searchFormSchema } from './inspection.data';
+
+  import { getInspectionList } from '/@/services/system';
+
+  const imgList1 = [
+    'https://t7.baidu.com/it/u=4198287529,2774471735&fm=193&f=GIF',
+    'https://t7.baidu.com/it/u=1821636093,3729533292&fm=193&f=GIF',
+  ];
+
+  const imgList2 = [
+    'http://img0.bdstatic.com/img/image/wise/1%E6%B8%85%E7%BA%AF%E7%BE%8E%E5%A5%B3.jpg',
+    'http://img0.bdstatic.com/img/image/wise/6%E6%B0%94%E8%B4%A8%E7%BE%8E%E5%A5%B3.jpg',
+  ];
+
+  export default defineComponent({
     name: 'InspectionData',
-    components: {
-      [Col.name]: Col,
-      [Row.name]: Row,
-      Form,
-      FormItem: Form.item,
-      TreeSelect,
-    },
-    data() {
+    components: { BasicTable, PageWrapper, ImagePreview },
+    setup() {
+      const [registerTable] = useTable({
+        title: '巡检明细列表',
+        api: getInspectionList,
+        columns,
+        formConfig: {
+          labelWidth: 120,
+          schemas: searchFormSchema,
+        },
+        useSearchForm: true,
+        showTableSetting: true,
+        bordered: true,
+        beforeFetch: (res) => {
+          console.log('before: ', res);
+        },
+        afterFetch: (res) => {
+          console.log('after: ', res);
+        },
+      });
+
+      const imgList = ref([]);
+
+      function handleImage(_url) {
+        console.log(_url);
+        const random = Math.round(Math.random() * (2 - 1)) + 1;
+        console.log(random);
+        if (random === 1) {
+          imgList.value = imgList1;
+        } else {
+          imgList.value = imgList2;
+        }
+        nextTick(() => {
+          const imgs = Image.value && Image?.value?.$el.getElementsByClassName('ant-image');
+          console.log(imgs);
+          const imgFirst = Image.value && Image?.value?.$el.getElementsByClassName('ant-image')[0];
+          imgFirst.click();
+        });
+      }
+
+      const Image = ref(null);
+
       return {
-        treeData: [
-          {
-            title: 'Node1',
-            value: '0-0',
-            key: '0-0',
-            children: [
-              {
-                title: 'Child Node1',
-                value: '0-0-0',
-                key: '0-0-0',
-              },
-            ],
-          },
-          {
-            title: 'Node2',
-            value: '0-1',
-            key: '0-1',
-            children: [
-              {
-                title: 'Child Node3',
-                value: '0-1-0',
-                key: '0-1-0',
-                disabled: true,
-              },
-              {
-                title: 'Child Node4',
-                value: '0-1-1',
-                key: '0-1-1',
-              },
-              {
-                title: 'Child Node5',
-                value: '0-1-2',
-                key: '0-1-2',
-              },
-            ],
-          },
-        ],
-        distId: '',
+        registerTable,
+        handleImage,
+        imgList,
+        Image,
       };
     },
-  };
+  });
 </script>
-<style lang="less" scoped>
-  .wrapper {
-    .filter-sec {
-      width: 100%;
+
+<style lang="less">
+  .display-wrapper {
+    display: none;
+    width: 100%;
+    height: 100px;
+
+    img {
+      width: 100px;
       height: auto;
-      padding: 25px;
-      background: #fff;
+    }
+  }
+
+  .ant-calendar-picker {
+    width: 100%;
+  }
+
+  .ant-btn.img-btn {
+    color: #1890ff;
+    background: none;
+    border: none;
+    box-shadow: unset;
+
+    &:hover {
+      background: none;
+    }
+  }
+
+  .quality-sec {
+    padding: 0 24px;
+    line-height: 22px;
+    text-align: left;
+
+    .quality-symbol {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 8px;
+      vertical-align: middle;
+      background: #e1e2e3;
+      border-radius: 50%;
+
+      &.good {
+        background: #52c41a;
+      }
+
+      &.normal {
+        background: #ff9b10;
+      }
+
+      &.bad {
+        background: #f85359;
+      }
     }
   }
 </style>
