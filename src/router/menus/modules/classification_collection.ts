@@ -15,8 +15,14 @@ const menu: MenuModule = {
         name: '报警管理',
       },
       {
-        path: 'transfer_information',
-        name: '中转站信息',
+        path: 'collection_ability',
+        name: '收运能力',
+        children: [
+          {
+            path: 'transfer_information',
+            name: '中转站信息',
+          },
+        ],
       },
     ],
   },

@@ -4,44 +4,44 @@ import { FormSchema } from '/@/components/Table';
 export const columns: BasicColumn[] = [
   {
     title: '行政区划',
-    dataIndex: 'district',
+    dataIndex: 'qymc',
     width: 120,
   },
   {
     title: '场景类型',
-    dataIndex: 'sceneType',
+    dataIndex: 'cjlx',
     width: 120,
   },
   {
     title: '场景名称',
-    dataIndex: 'sceneName',
+    dataIndex: 'cjmc',
     width: 120,
   },
   {
     title: '垃圾类型',
-    dataIndex: 'garbageType',
+    dataIndex: 'ljlx',
     width: 120,
     slots: { customRender: 'garbageType' },
   },
   {
     title: '巡检员',
-    dataIndex: 'inspecterName',
+    dataIndex: 'xjy',
     width: 120,
   },
   {
     title: '提交时间',
-    dataIndex: 'createTime',
+    dataIndex: 'xjsj',
     width: 200,
   },
   {
     title: '分类质量',
-    dataIndex: 'quality',
+    dataIndex: 'flzlpj',
     width: 120,
     slots: { customRender: 'quality' },
   },
   {
     title: '单次积分',
-    dataIndex: 'score',
+    dataIndex: 'dcjf',
     width: 120,
     align: 'right',
   },
@@ -53,7 +53,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '巡检图片',
-    dataIndex: 'imgPath',
+    dataIndex: 'imgurl1',
     width: 120,
     slots: { customRender: 'checkImg' },
   },
@@ -61,33 +61,33 @@ export const columns: BasicColumn[] = [
 
 export const searchFormSchema: FormSchema[] = [
   {
-    field: 'district',
+    field: 'regionid',
     label: '地区：',
     component: 'Select',
     colProps: { span: 8 },
   },
   {
-    field: 'merchant',
-    label: '沿街商铺：',
+    field: 'cjlx',
+    label: '场景类型：',
     component: 'Select',
     colProps: { span: 8 },
   },
   {
-    field: 'quality',
+    field: 'flzl',
     label: '分类质量：',
     component: 'Select',
     colProps: { span: 8 },
   },
   {
-    field: 'filterDate',
+    field: 'cxrq',
     label: '时间选择：',
     component: 'DatePicker',
     colProps: { span: 8 },
     componentProps: {},
   },
   {
-    field: 'searchName',
-    label: '场景名称搜索：',
+    field: 'cjmc',
+    label: '场景名称：',
     component: 'Input',
     colProps: { span: 8 },
   },

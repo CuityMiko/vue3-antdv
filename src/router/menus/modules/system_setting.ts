@@ -7,6 +7,10 @@ const menu: MenuModule = {
     path: '/system_setting',
     children: [
       {
+        path: 'data_dictionary',
+        name: '数据字典',
+      },
+      {
         path: 'scene_info',
         name: '场景信息',
       },
@@ -15,16 +19,18 @@ const menu: MenuModule = {
         name: '积分规则',
       },
       {
-        path: 'role_manage',
-        name: '角色管理',
-      },
-      {
-        path: 'account_manage',
-        name: '账号管理',
-      },
-      {
-        path: 'data_dictionary',
-        name: '数据字典',
+        path: 'power_manage',
+        name: '权限管理',
+        children: [
+          {
+            path: 'role_manage',
+            name: '角色管理',
+          },
+          {
+            path: 'account_manage',
+            name: '账号管理',
+          },
+        ],
       },
       {
         path: 'secret_manage',

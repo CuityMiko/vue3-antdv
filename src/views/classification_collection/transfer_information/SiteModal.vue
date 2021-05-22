@@ -11,7 +11,7 @@
   import { getDeptList } from '/@/services/system';
 
   export default defineComponent({
-    name: 'AccountModal',
+    name: 'SiteModal',
     components: { BasicModal, BasicForm },
     emits: ['success', 'register'],
     setup(_, { emit }) {

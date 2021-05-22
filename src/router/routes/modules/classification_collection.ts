@@ -7,7 +7,7 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/classification_collection/collection_map',
   meta: {
-    icon: 'carbon:map',
+    icon: 'eva:car-outline',
     title: '分类收运',
   },
   children: [
@@ -28,12 +28,21 @@ const dashboard: AppRouteModule = {
       },
     },
     {
-      path: 'transfer_information',
-      name: 'TransferInformation',
-      component: () => import('/@/views/classification_collection/transfer_information/index.vue'),
+      path: 'collection_ability',
+      name: 'CollectionAbility',
       meta: {
-        title: '中转站信息',
+        title: '收运能力',
       },
+      children: [
+        {
+          path: 'transfer_information',
+          name: 'TransferInformation',
+          component: () => import('/@/views/classification_collection/transfer_information/index.vue'),
+          meta: {
+            title: '中转站信息',
+          },
+        },
+      ],
     },
   ],
 };

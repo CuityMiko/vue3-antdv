@@ -4,7 +4,8 @@
     :class="[prefixCls, theme, { 'collapsed-show-title': getCollapsedShowTitle }]"
     @click="handleGoHome"
   >
-    <img src="../../../assets/images/logo.png" />
+    <img v-show="!getCollapsed" src="../../../assets/images/logo-info.png" style="width: 100%; height: 41px" />
+    <img class="logo-img" v-show="getCollapsed" src="../../../assets/images/logo.png" />
     <div
       class="ml-2 truncate md:opacity-100"
       :class="[
@@ -15,7 +16,6 @@
       ]"
       v-show="showTitle"
     >
-      {{ title }}
     </div>
   </div>
 </template>
@@ -43,9 +43,10 @@
     },
     setup() {
       const { prefixCls } = useDesign('app-logo');
-      const { getCollapsedShowTitle } = useMenuSetting();
+      const { getCollapsedShowTitle, getCollapsed } = useMenuSetting();
       const { title } = useGlobSetting();
       const go = useGo();
+      console.log(getCollapsed, '---');
 
       function handleGoHome(): void {
         go(PageEnum.BASE_HOME);
@@ -56,6 +57,7 @@
         title,
         prefixCls,
         getCollapsedShowTitle,
+        getCollapsed,
       };
     },
   });

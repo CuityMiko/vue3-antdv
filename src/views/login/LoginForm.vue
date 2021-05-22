@@ -1,7 +1,7 @@
 <template>
-  <div class="login-wrapper">
+  <div class="login-wrapper" v-show="getShow">
     <h1>登录</h1>
-    <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef" v-show="getShow">
+    <Form class="p-4 enter-x" :model="formData" :rules="getFormRules" ref="formRef">
       <h3>账号</h3>
       <FormItem name="account" class="enter-x" style="margin-bottom: 15px">
         <Input size="large" v-model:value="formData.account" placeholder="请输入账号..." />
@@ -11,14 +11,15 @@
         <InputPassword size="large" visibilityToggle v-model:value="formData.password" placeholder="请输入密码..." />
       </FormItem>
 
-      <ARow class="enter-x" style="margin-bottom: 15px" :justify="'space-between'">
-        <ACol :span="15">
-          <Input size="large" v-model:value="formData.code" placeholder="请输入验证码" />
-        </ACol>
-        <ACol :span="8">
-          <img src="" alt="" />
-        </ACol>
-      </ARow>
+      <FormItem :rules="codeRules" class="enter-x" name="code">
+        <Input
+          size="large"
+          style="width: 192px; margin-right: 8px"
+          v-model:value="formData.code"
+          placeholder="请输入验证码"
+        />
+        <Identify :identifyCode="identifyCode" @click="refreshCode" :contentWidth="104" />
+      </FormItem>
 
       <FormItem class="enter-x" style="margin-bottom: 8px">
         <Button type="primary" size="large" block @click="handleLogin" :loading="loading"> 登 录 </Button>
@@ -40,7 +41,7 @@
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, reactive, ref, toRaw, unref, computed } from 'vue';
+  import { defineComponent, reactive, ref, toRaw, unref, computed, onMounted } from 'vue';
 
   import { Form, Input, Row, Col, Button } from 'ant-design-vue';
   import { useI18n } from '/@/hooks/web/useI18n';
@@ -50,6 +51,8 @@
   import { LoginStateEnum, useLoginState, useFormRules, useFormValid } from './useLogin';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { onKeyStroke } from '@vueuse/core';
+
+  import Identify from './Indetify.vue';
 
   export default defineComponent({
     name: 'LoginForm',
@@ -61,6 +64,7 @@
       FormItem: Form.Item,
       Input,
       InputPassword: Input.Password,
+      Identify,
     },
     setup() {
       const { t } = useI18n();
@@ -80,6 +84,43 @@
         password: '123456',
         code: '',
       });
+
+      const codeRules = [
+        {
+          required: true,
+          trigger: 'blur',
+          validator: async (rule, value) => {
+            // console.log(rule, value)
+            if (!value) {
+              return Promise.reject('请输入图形验证码');
+            } else if (value !== identifyCode.value) {
+              return Promise.reject('验证码输入错误');
+            }
+          },
+        },
+      ];
+
+      const identifyCodes = ref('123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+      const identifyCode = ref('');
+
+      const randomNum = (min, max) => {
+        return Math.floor(Math.random() * (max - min) + min);
+      };
+
+      const refreshCode = () => {
+        identifyCode.value = '';
+        makeCode(identifyCodes, 4);
+      };
+
+      const makeCode = (o, l) => {
+        const oUnref = unref(o);
+        if (!oUnref) return;
+        for (let i = 0; i < l; i++) {
+          identifyCode.value += oUnref[randomNum(0, oUnref.length)];
+        }
+        // 图形验证码
+        console.log(identifyCode);
+      };
 
       const { validForm } = useFormValid(formRef);
 
@@ -110,12 +151,20 @@
         }
       }
 
+      onMounted(() => {
+        makeCode(identifyCodes, 4);
+      });
+
       return {
         t,
         prefixCls,
+        identifyCodes,
+        identifyCode,
+        refreshCode,
         formRef,
         formData,
         getFormRules,
+        codeRules,
         rememberMe,
         handleLogin,
         loading,

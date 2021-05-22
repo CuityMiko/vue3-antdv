@@ -7,10 +7,18 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/system_setting/scene_info',
   meta: {
-    icon: 'carbon:calendar-settings',
+    icon: 'carbon:settings',
     title: '系统设置',
   },
   children: [
+    {
+      path: 'data_dictionary',
+      name: 'DataDictionary',
+      component: () => import('/@/views/system_setting/data_dictionary/index.vue'),
+      meta: {
+        title: '数据字典',
+      },
+    },
     {
       path: 'scene_info',
       name: 'SceneInfo',
@@ -28,36 +36,59 @@ const dashboard: AppRouteModule = {
       },
     },
     {
-      path: 'role_manage',
-      name: 'RoleManage',
-      component: () => import('/@/views/system_setting/role_manage/index.vue'),
-      meta: {
-        title: '角色管理',
-      },
-    },
-    {
-      path: 'role_manage_detail',
-      name: 'RoleManageDetail',
-      component: () => import('/@/views/system_setting/role_manage/detail.vue'),
-      meta: {
-        title: '角色详情',
-      },
-    },
-    {
-      path: 'account_manage',
-      name: 'AccountManage',
-      component: () => import('/@/views/system_setting/account_manage/index.vue'),
-      meta: {
-        title: '账号管理',
-      },
-    },
-    {
       path: 'data_dictionary',
       name: 'DataDictionary',
       component: () => import('/@/views/system_setting/data_dictionary/index.vue'),
       meta: {
         title: '数据字典',
       },
+    },
+    {
+      path: 'power_manage',
+      name: 'PowerManage',
+      meta: {
+        title: '权限管理',
+      },
+      children: [
+        {
+          path: 'role_manage',
+          name: 'RoleManage',
+          component: () => import('/@/views/system_setting/role_manage/index.vue'),
+          meta: {
+            title: '角色管理',
+          },
+        },
+        {
+          path: 'role_operate',
+          name: 'RoleOperate',
+          component: () => import('/@/views/system_setting/role_manage/role_operate.vue'),
+          meta: {
+            title: '新增角色',
+            ignoreKeepAlive: true,
+            hideTab: true,
+            currentActiveMenu: '/system_setting/power_manage/role_manage',
+          },
+        },
+        {
+          path: 'account_manage',
+          name: 'AccountManage',
+          component: () => import('/@/views/system_setting/account_manage/index.vue'),
+          meta: {
+            title: '账号管理',
+          },
+        },
+        {
+          path: 'account_operate',
+          name: 'AccountOperate',
+          component: () => import('/@/views/system_setting/account_manage/account_operate.vue'),
+          meta: {
+            title: '新增账号',
+            ignoreKeepAlive: true,
+            hideTab: true,
+            currentActiveMenu: '/system_setting/power_manage/account_manage',
+          },
+        },
+      ],
     },
     {
       path: 'secret_manage',

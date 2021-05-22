@@ -3,7 +3,7 @@ import type { MenuModule } from '/@/router/types';
 const menu: MenuModule = {
   orderNo: 20,
   menu: {
-    name: '分类投放',
+    name: '分类质量',
     path: '/classification_deposition',
     children: [
       {

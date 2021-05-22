@@ -13,18 +13,18 @@
           </div>
           <div :class="`${prefixCls}-form flex justify-center`" class="">
             <LoginForm />
-            <ForgetPasswordForm />
           </div>
-          <div class="copyright mt-4"
+          <div class="copyright mt-8"
             >技术支持：浙江联运知慧科技有限公司 地址：浙江省杭州市余杭经济开发区五洲路98号</div
           >
         </div>
       </div>
     </div>
+    <ForgetPasswordForm />
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent, computed } from 'vue';
+  import { defineComponent, computed, onMounted } from 'vue';
 
   import LoginForm from './LoginForm.vue';
   import ForgetPasswordForm from './ForgetPasswordForm.vue';
@@ -33,6 +33,7 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useLocaleStore } from '/@/store/modules/locale';
+  import { getIndexRPro } from '/@/services/system';
 
   export default defineComponent({
     name: 'Login',
@@ -45,6 +46,16 @@
       const { prefixCls } = useDesign('login');
       const { t } = useI18n();
       const localeStore = useLocaleStore();
+
+      const exampleRequest = () => {
+        getIndexRPro().then((res) => {
+          console.log(res);
+        });
+      };
+
+      onMounted(() => {
+        exampleRequest();
+      });
 
       return {
         t,
@@ -93,7 +104,7 @@
   .@{prefix-cls} {
     padding-top: 10.185vh;
     overflow: hidden;
-    background: url('/@/assets/images/login_bg.png');
+    background: url('/@/assets/images/login-bg.png');
     @media (max-width: @screen-xl) {
       // background-color: #293146;
 

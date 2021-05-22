@@ -1,5 +1,10 @@
 import { BasicPageParams, BasicFetchResult } from '/@/services/model/baseModel';
 
+export type LoginParams = {
+  yhzh?: string;
+  yhmm?: string;
+};
+
 export type AccountParams = BasicPageParams & {
   account?: string;
   nickname?: string;
@@ -23,20 +28,20 @@ export type MenuParams = {
 };
 
 export type InspectionParams = BasicPageParams & {
-  district?: string;
-  merchent?: string;
-  quality?: number;
-  filterDate?: string;
-  searchName?: string;
+  regionid?: string;
+  cjlx?: string;
+  flzl?: number;
+  cxrq?: string;
+  cjmc?: string;
 };
 
 export type AnalysisParams = {
-  filterDate?: string;
+  tjsj?: string;
 };
 
 export type ClassifyParams = {
-  filterDate?: string;
-  listType?: number;
+  tjsj?: string;
+  redBlack?: number;
 };
 
 export type AlarmParams = BasicPageParams & {
@@ -90,35 +95,33 @@ export interface RoleListItem {
 }
 
 export interface InspectionListItem {
-  id: string;
-  district: string;
-  sceneType: string;
-  sceneName: string;
-  garbageType: string;
-  inspecterName: string;
-  createTime: number;
-  quality: number;
-  score: number;
+  communityid: string;
+  qymc: string;
+  cjlx: string;
+  cjmc: string;
+  ljlx: string;
+  xjy: string;
+  xjsj: number;
+  flzlpj: number;
+  dcjf: number;
   averageScore: number;
-  imgPath: string;
+  imgurl1: string;
 }
 
 export interface AnalysisListItem {
-  id: string;
-  rank: string | number;
-  countyName: string;
-  score: number;
-  percent: string;
+  qxmc: string;
+  zjf: number;
+  flhgl: string;
 }
 
 export interface ClassifyListItem {
   id: string;
   rank: string | number;
-  countyName: string;
-  sceneType: string;
-  sceneName: string;
-  score: number;
-  percent: string;
+  qxmc: string;
+  cjlx: string;
+  cjmc: string;
+  zjf: number;
+  flhgl: string;
 }
 
 export interface AlarmListItem {

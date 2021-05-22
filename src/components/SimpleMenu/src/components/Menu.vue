@@ -34,7 +34,7 @@
       },
       accordion: propTypes.bool.def(true),
       width: propTypes.string.def('100%'),
-      collapsedWidth: propTypes.string.def('48px'),
+      collapsedWidth: propTypes.string.def('68px'),
       indentSize: propTypes.number.def(16),
       collapse: propTypes.bool.def(true),
       activeSubMenuNames: {

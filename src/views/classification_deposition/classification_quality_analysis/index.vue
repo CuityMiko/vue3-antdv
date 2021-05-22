@@ -15,13 +15,13 @@
               >
             </Select>
             <DatePicker
-              v-model:value="analysisParams.filterDate"
+              v-model:value="analysisParams.tjsj"
               placeholder="请选择"
               v-if="dPickerMode1 === 'date'"
               @change="onChange1"
             />
             <MonthPicker
-              v-model:value="analysisParams.filterDate"
+              v-model:value="analysisParams.tjsj"
               placeholder="请选择"
               v-if="dPickerMode1 === 'month'"
               @change="onChange1"
@@ -74,13 +74,13 @@
                 >
               </Select>
               <DatePicker
-                v-model:value="classifyParams1.filterDate"
+                v-model:value="classifyParams1.tjsj"
                 placeholder="请选择"
                 v-if="dPickerMode2 === 'date'"
                 @change="onChange2"
               />
               <MonthPicker
-                v-model:value="classifyParams1.filterDate"
+                v-model:value="classifyParams1.tjsj"
                 placeholder="请选择"
                 v-if="dPickerMode2 === 'month'"
                 @change="onChange2"
@@ -110,13 +110,13 @@
                 >
               </Select>
               <DatePicker
-                v-model:value="classifyParams2.filterDate"
+                v-model:value="classifyParams2.tjsj"
                 placeholder="请选择"
                 v-if="dPickerMode3 === 'date'"
                 @change="onChange3"
               />
               <MonthPicker
-                v-model:value="classifyParams2.filterDate"
+                v-model:value="classifyParams2.tjsj"
                 placeholder="请选择"
                 v-if="dPickerMode3 === 'month'"
                 @change="onChange3"
@@ -168,9 +168,9 @@
       const classifyTableLoading1 = ref(true);
       const classifyTableLoading2 = ref(true);
 
-      const analysisParams = ref({ filterDate: '' });
-      const classifyParams1 = ref({ filterDate: '', listType: 1 });
-      const classifyParams2 = ref({ filterDate: '', listType: 2 });
+      const analysisParams = ref({ tjsj: '' });
+      const classifyParams1 = ref({ tjsj: '', redBlack: 1 });
+      const classifyParams2 = ref({ tjsj: '', redBlack: 2 });
 
       const sColumns = reactive(scoreColumns);
       const cColumns = reactive(classifyColumns);
@@ -189,7 +189,7 @@
       const onChange1 = (date, str) => {
         console.log('onChange:', date);
         console.log('onChange', str);
-        analysisParams.value.filterDate = str;
+        analysisParams.value.tjsj = str;
         nextTick(() => {
           getAnalysisDatas();
         });
@@ -198,7 +198,7 @@
       const onChange2 = (date, str) => {
         console.log('onChange:', date);
         console.log('onChange', str);
-        classifyParams1.value.filterDate = str;
+        classifyParams1.value.tjsj = str;
         nextTick(() => {
           getClassifyList(classifyParams1.value).then((res) => {
             classifyList1.list = res.items;
@@ -210,7 +210,7 @@
       const onChange3 = (date, str) => {
         console.log('onChange:', date);
         console.log('onChange', str);
-        classifyParams2.value.filterDate = str;
+        classifyParams2.value.tjsj = str;
         nextTick(() => {
           getClassifyList(classifyParams2.value).then((res) => {
             classifyList2.list = res.items;
@@ -298,7 +298,7 @@
         } else if (val === '2') {
           dPickerMode1.value = 'month';
         }
-        analysisParams.value.filterDate = '';
+        analysisParams.value.tjsj = '';
       }
 
       function totalHandleType2(val) {
@@ -307,7 +307,7 @@
         } else if (val === '2') {
           dPickerMode2.value = 'month';
         }
-        classifyParams1.value.filterDate = '';
+        classifyParams1.value.tjsj = '';
       }
 
       function totalHandleType3(val) {
@@ -316,7 +316,7 @@
         } else if (val === '2') {
           dPickerMode3.value = 'month';
         }
-        classifyParams2.value.filterDate = '';
+        classifyParams2.value.tjsj = '';
       }
 
       function recordKey(record) {

@@ -81,6 +81,7 @@
           const imgs = Image.value && Image?.value?.$el.getElementsByClassName('ant-image');
           console.log(imgs);
           const imgFirst = Image.value && Image?.value?.$el.getElementsByClassName('ant-image')[0];
+          if (!imgFirst) return;
           imgFirst.click();
         });
       }

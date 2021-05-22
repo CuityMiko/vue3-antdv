@@ -105,6 +105,90 @@ const menuList = (() => {
   return result;
 })();
 
+const inspectionList = (() => {
+  const result: any[] = [];
+  for (let index = 0; index < 20; index++) {
+    result.push({
+      communityid: `${index}`,
+      qymc: '@county',
+      cjlx: '@ctitle',
+      cjmc: '@cname',
+      'ljlx|370001': ['37001', '37002'],
+      xjy: '@cname',
+      xjsj: '@datetime',
+      'flzlpj|1': ['1', '2', '3'],
+      'dcjf|0-10': 1,
+      'averageScore|0-10': 10,
+      imgurl1: '@url',
+    });
+  }
+  return result;
+})();
+
+const analysisList = (() => {
+  const result: any[] = [];
+  for (let index = 0; index < 38; index++) {
+    result.push({
+      id: `${index}`,
+      rank: `${index + 1}`,
+      qxmc: '@county',
+      'zjf|1000-10000': 1000,
+      flhgl: '@float(60, 100, 0, 0)%',
+    });
+  }
+  return result;
+})();
+
+const classifyList = (() => {
+  const result: any[] = [];
+  for (let index = 0; index < 10; index++) {
+    result.push({
+      id: `${index}`,
+      rank: `${index + 1}`,
+      qxmc: '@county',
+      cjlx: '@cname',
+      cjmc: '@cname',
+      'zjf|10-1000': 10,
+      flhgl: '@float(20, 100, 0, 0)%',
+    });
+  }
+  return result;
+})();
+
+const alarmList = (() => {
+  const result: any[] = [];
+  for (let index = 0; index < 20; index++) {
+    result.push({
+      id: `${index}`,
+      sceneName: '@cname',
+      sceneAddress: '@county',
+      alarmTime: '@dateTime',
+      'status|1': ['0', '1'],
+      dealPerson: '@cname',
+      alarmRelievedTime: '@dateTime',
+      imgPath: '@url',
+    });
+  }
+  return result;
+})();
+
+const transformList = (() => {
+  const result: any[] = [];
+  for (let index = 0; index < 50; index++) {
+    result.push({
+      id: `${index}`,
+      transformName: '@cname',
+      district: '@county',
+      chargeUnit: '@csentence(5)',
+      'transformType|1': ['1', '2', '3', '4'],
+      'transformStatus|1': ['1', '2'],
+      'transformAmount|100-1000': 100,
+      initDate: '@dateTime',
+    });
+  }
+  return result;
+})();
+
 export default [
   {
     url: '/basic-api/system/getAccountList',
@@ -146,6 +230,51 @@ export default [
     method: 'get',
     response: () => {
       return resultSuccess(menuList);
+    },
+  },
+  {
+    url: '/basic-api/api-supervision/classifiquality/l',
+    timeout: 100,
+    method: 'get',
+    response: ({ query }) => {
+      const { page = 1, pageSize = 20 } = query;
+      return resultPageSuccess(page, pageSize, inspectionList);
+    },
+  },
+  {
+    url: '/basic-api/api-supervision/classifiqualitystatistics/l/recordList',
+    timeout: 100,
+    method: 'get',
+    response: ({ query }) => {
+      const { page = 1, pageSize = 38 } = query;
+      return resultPageSuccess(page, pageSize, analysisList);
+    },
+  },
+  {
+    url: '/basic-api/api-supervision/classifiqualitystatistics/l/redBlackList',
+    timeout: 100,
+    method: 'get',
+    response: ({ query }) => {
+      const { page = 1, pageSize = 10 } = query;
+      return resultPageSuccess(page, pageSize, classifyList);
+    },
+  },
+  {
+    url: '/basic-api/system/getAlarmList',
+    timeout: 100,
+    method: 'get',
+    response: ({ query }) => {
+      const { page = 1, pageSize = 10 } = query;
+      return resultPageSuccess(page, pageSize, alarmList);
+    },
+  },
+  {
+    url: '/basic-api/system/getTransformList',
+    timeout: 100,
+    method: 'get',
+    response: ({ query }) => {
+      const { page = 1, pageSize = 10 } = query;
+      return resultPageSuccess(page, pageSize, transformList);
     },
   },
 ] as MockMethod[];

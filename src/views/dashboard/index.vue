@@ -23,7 +23,7 @@
   .dashboard-container {
     display: flex;
     height: 100%;
-    background-image: url('/@/assets/images/login_bg.png');
+    background-image: url('/@/assets/images/login-bg.png');
     flex-direction: column;
     align-items: center;
 

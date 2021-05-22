@@ -1,5 +1,5 @@
 <template>
-  <div :class="[prefixCls, getLayoutContentMode]" v-loading="getOpenPageLoading && getPageLoading">
+  <div :class="[prefixCls, getLayoutContentMode, 'mt-6']" v-loading="getOpenPageLoading && getPageLoading">
     <PageLayout />
   </div>
 </template>
@@ -37,7 +37,7 @@
   .@{prefix-cls} {
     position: relative;
     flex: 1 1 auto;
-    min-height: 0;
+    min-height: 800px;
 
     &.fixed {
       width: 1200px;

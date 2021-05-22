@@ -7,8 +7,8 @@ const dashboard: AppRouteModule = {
   component: LAYOUT,
   redirect: '/classification_deposition/inspection_data',
   meta: {
-    icon: 'bi:clipboard-data',
-    title: '分类投放',
+    icon: 'fe:app-menu',
+    title: '分类质量',
   },
   children: [
     {

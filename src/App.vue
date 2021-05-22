@@ -31,3 +31,10 @@
     },
   });
 </script>
+
+<style lang="less">
+  .BMap_cpyCtrl,
+  .anchorBL {
+    display: none;
+  }
+</style>

@@ -1,5 +1,4 @@
 import { BasicColumn } from '/@/components/Table';
-import { FormSchema } from '/@/components/Table';
 
 export const scoreColumns: BasicColumn[] = [
   {
@@ -10,21 +9,21 @@ export const scoreColumns: BasicColumn[] = [
   },
   {
     title: '社区/村名称',
-    dataIndex: 'countyName',
-    key: 'countyName',
+    dataIndex: 'qxmc',
+    key: 'qxmc',
     width: 110,
     ellipsis: true,
   },
   {
     title: '总积分',
-    dataIndex: 'score',
-    key: 'score',
+    dataIndex: 'zjf',
+    key: 'zjf',
     width: 80,
   },
   {
     title: '分类合格率',
-    dataIndex: 'percent',
-    key: 'percent',
+    dataIndex: 'flhgl',
+    key: 'flhgl',
     slots: { customRender: 'percent' },
   },
 ];
@@ -37,42 +36,27 @@ export const classifyColumns: BasicColumn[] = [
   },
   {
     title: '社区/村',
-    dataIndex: 'countyName',
+    dataIndex: 'string',
     width: 85,
   },
   {
     title: '场景类型',
-    dataIndex: 'sceneType',
+    dataIndex: 'cjlx',
     width: 85,
   },
   {
     title: '场景名称',
-    dataIndex: 'sceneName',
+    dataIndex: 'cjmc',
     width: 100,
   },
   {
     title: '总积分',
-    dataIndex: 'score',
+    dataIndex: 'zjf',
     width: 85,
   },
   {
     title: '分类合格率',
-    dataIndex: 'percent',
+    dataIndex: 'flhgl',
     width: 115,
-  },
-];
-
-export const searchFormSchema: FormSchema[] = [
-  {
-    field: 'filterType',
-    label: '',
-    component: 'Select',
-    colProps: {},
-  },
-  {
-    field: 'filterDate',
-    label: '',
-    component: 'DatePicker',
-    colProps: {},
   },
 ];

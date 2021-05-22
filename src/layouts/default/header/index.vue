@@ -124,7 +124,7 @@
         if (!unref(getIsMixMode) || unref(getIsMobile)) {
           return {};
         }
-        const width = unref(getMenuWidth) < 180 ? 180 : unref(getMenuWidth);
+        const width = unref(getMenuWidth) < 208 ? 208 : unref(getMenuWidth);
         return { width: `${width}px` };
       });
 
